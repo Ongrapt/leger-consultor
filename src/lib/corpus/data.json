@@ -1,0 +1,888 @@
+{
+  "articulos": [
+    {
+      "id_vector": "YUC_CONDO_ART_1",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "I",
+        "nombre_capitulo": "Disposiciones generales",
+        "seccion": null,
+        "nombre_seccion": null,
+        "articulo": 1,
+        "titulo": "Objeto de la ley"
+      },
+      "texto_original": "Artículo 1. Objeto de la ley\nEsta ley es reglamentaria del artículo 699 del Código Civil del Estado de Yucatán\ny tiene por objeto regular la constitución, modificación y extinción del régimen de\npropiedad en condominio y establecer las bases para su organización y\nfuncionamiento."
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_2",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "I",
+        "nombre_capitulo": "Disposiciones generales",
+        "seccion": null,
+        "nombre_seccion": null,
+        "articulo": 2,
+        "titulo": "Definiciones"
+      },
+      "texto_original": "Artículo 2. Definiciones\nPara los efectos de esta ley, se entenderá por:\nI. Acta constitutiva: el instrumento jurídico otorgado ante notario público en\nel que se constituye el régimen de propiedad en condominio.\nII. Administrador: la persona física o moral designada por la asamblea para\ndesempeñar las funciones de administración del condominio.\nIII. Áreas y bienes de uso común: las áreas y los bienes que pertenecen en\nforma proindiviso a los condóminos y que se utilizan y comparten para satisfacer\nsus necesidades de acuerdo al destino y uso de los inmuebles, incluyendo las\ndestinadas a infraestructura y equipamiento urbano; su uso estará regulado por\nesta ley, así como por el acta constitutiva, estatutos y reglamentos interiores que\ncorrespondan.\nFracción reformada DO 03-01-2024\nIV. Asamblea: el órgano supremo de decisión del condominio, que\nconstituye la máxima instancia encargada de regir la organización y\nfuncionamiento de los mecanismos para la discusión y toma de acuerdos respecto\nde asuntos de interés para los condóminos, en términos de esta ley.\nFracción reformada DO 03-01-2024\nV. Condominio: el inmueble sujeto al régimen de propiedad en condominio,\nen los términos de esta ley.\nVI. Condómino: la persona física o moral propietaria de una o varias\nunidades de propiedad exclusiva de un condominio y copropietaria, en el\nporcentaje que señale su cuota de participación, de las áreas y bienes de uso\ncomún.\nVII. Cuota de administración: la que se determina anualmente para cada\ncondómino y sirve para integrar los fondos de administración, reserva y los demás\nque se hayan establecido en los estatutos.\nVIII. Cuota de participación: la que determina el porcentaje que le\ncorresponde a cada condómino con respecto al total del inmueble y que sirve de\nbase para determinar la participación en las cargas y beneficios del condominio.\nIX. Equipamiento urbano: el conjunto de inmuebles, instalaciones,\nconstrucciones y mobiliario utilizado para prestar a la población los servicios\nurbanos para desarrollar actividades económicas, sociales, culturales, deportivas,\neducativas, de traslado y de abasto.\nFracción adicionada DO 03-01-2024\nX. Estatutos: el documento normativo que regula aspectos referentes al\ngobierno del condominio y a su régimen jurídico real.\nFracción recorrida DO 03-01-2024\nXI. Infraestructura urbana: los sistemas, redes e instalaciones para la\norganización y distribución de bienes y servicios en los centros de población.\nFracción adicionada DO 03-01-2024\nXII. Poseedor: la persona que tiene el uso, goce y disfrute de una unidad de\npropiedad exclusiva, a través de un hecho o acto jurídico, y no tiene la calidad de\ncondómino.\nFracción adicionada DO 03-01-2024\nXIII. Subcondominio: el régimen de propiedad en el cual un condominio es\nconstituido al interior de otro condominio.\nFracción recorrida DO 03-01-2024\nXIV. Unidades de propiedad exclusiva: los lotes de terreno, departamentos,\nviviendas, casas, locales o naves que integran el condominio, susceptibles de\naprovechamiento independiente por tener salida propia a un elemento común de\naquel, y que pertenecen de manera exclusiva a determinados condóminos.\nFracción recorrida DO 03-01-2024"
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_3",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "I",
+        "nombre_capitulo": "Disposiciones generales",
+        "seccion": null,
+        "nombre_seccion": null,
+        "articulo": 3,
+        "titulo": "Régimen de propiedad en condominio"
+      },
+      "texto_original": "Artículo 3. Régimen de propiedad en condominio\nEl régimen de propiedad en condominio es aquel bajo el cual un inmueble se divide\nen unidades de propiedad exclusiva y áreas y bienes de uso común, siempre que\naquellas tengan acceso a estas.\nEn este régimen los condóminos tienen un derecho de propiedad sobre sus\nunidades de propiedad exclusiva y un derecho de copropiedad sobre las áreas y\nbienes de uso común."
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_4",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "I",
+        "nombre_capitulo": "Disposiciones generales",
+        "seccion": null,
+        "nombre_seccion": null,
+        "articulo": 4,
+        "titulo": "Supletoriedad"
+      },
+      "texto_original": "Artículo 4. Supletoriedad\nSon supletorias de esta ley, las disposiciones del Código Civil del Estado de\nYucatán, la Ley de Asentamientos Humanos, Ordenamiento Territorial y Desarrollo\nUrbano del Estado de Yucatán y la Ley de Desarrollos Inmobiliarios del Estado de\nYucatán.\nPárrafo reformado DO 03-01-2024"
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_5",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "II",
+        "nombre_capitulo": "Constitución, modificación y extinción del régimen de propiedad en condominio",
+        "seccion": null,
+        "nombre_seccion": null,
+        "articulo": 5,
+        "titulo": "Bienes sobre los que puede constituirse el régimen de propiedad"
+      },
+      "texto_original": "Artículo 5. Bienes sobre los que puede constituirse el régimen de propiedad\nen condominio\nEl régimen de propiedad en condominio podrá constituirse en los inmuebles,\nincluso en proyecto o construcción, siempre que cuenten con las características\nestablecidas en el artículo 3 de esta ley.\nPara la constitución del régimen de propiedad en condominio respecto de dos o\nmás predios, previamente o al momento de su constitución, deberá realizarse la\nunión de estos."
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_6",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "II",
+        "nombre_capitulo": "Constitución, modificación y extinción del régimen de propiedad en condominio",
+        "seccion": null,
+        "nombre_seccion": null,
+        "articulo": 6,
+        "titulo": "Constitución del régimen de propiedad en condominio"
+      },
+      "texto_original": "Artículo 6. Constitución del régimen de propiedad en condominio\nPara constituir el régimen de propiedad en condominio, los propietarios del\ninmueble de que se trate deberán otorgar un acta constitutiva ante notario público,\nen la que se haga constar, al menos:\nI. La manifestación de voluntad de los propietarios de establecer el régimen\nde propiedad en condominio.\nII. Los antecedentes de propiedad del bien inmueble de que se trate.\nIII. La descripción de cada unidad de propiedad exclusiva que incluya su\nuso, número, ubicación, medidas y colindancias, así como de los anexos, en su\ncaso, y la cuota de participación que le corresponda.\nIV. La descripción de las áreas y bienes de uso común que incluya su\ndestino, ubicación y medidas.\nV. Los estatutos del condominio.\nVI. La previsión, si procede, sobre la formación presente o futura de\nsubcondominios.\nVII. Copia del plano general del condominio.\nFracción adicionada DO 03-01-2024\nAl apéndice de la escritura se agregarán, debidamente certificados por el notario\npúblico, el plano general; los planos correspondientes a cada una de las unidades\nde propiedad exclusiva; los planos de las áreas comunes; la autorización de\nconstitución de desarrollo inmobiliario privado, emitida por la autoridad municipal\ncompetente en materia de desarrollo urbano en términos de lo dispuesto en la Ley\nde Desarrollos Inmobiliarios del Estado de Yucatán; así como cualquier otro\nelemento que dicho notario considere conveniente para la mejor identificación del\ninmueble en condominio.\nPárrafo reformado DO 03-01-2024"
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_7",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "II",
+        "nombre_capitulo": "Constitución, modificación y extinción del régimen de propiedad en condominio",
+        "seccion": null,
+        "nombre_seccion": null,
+        "articulo": 7,
+        "titulo": "Inscripción del acta constitutiva"
+      },
+      "texto_original": "Artículo 7. Inscripción del acta constitutiva\nEl primer testimonio de la escritura pública y su apéndice, en la que consten el acta\nconstitutiva y la documentación a la que se refiere el artículo anterior, deberá\ninscribirse en el Registro Público de la Propiedad y del Comercio del Instituto de\nSeguridad Jurídica Patrimonial de Yucatán.\nLos registradores denegarán la inscripción si el apéndice referido no contiene la\ndocumentación prevista en el párrafo segundo del artículo anterior de esta ley, en\natención a lo dispuesto en la Ley que crea el Instituto de Seguridad Jurídica\nPatrimonial de Yucatán.\nArtículo reformado DO 03-01-2024"
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_8",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "II",
+        "nombre_capitulo": "Constitución, modificación y extinción del régimen de propiedad en condominio",
+        "seccion": null,
+        "nombre_seccion": null,
+        "articulo": 8,
+        "titulo": "Modificación del acta constitutiva"
+      },
+      "texto_original": "Artículo 8. Modificación del acta constitutiva\nLas modificaciones del acta constitutiva se acordarán en sesión de la asamblea, y\npara su aprobación se requerirá el voto en ese sentido de los condóminos que\nrepresenten, al menos, el 75% de la cuota de participación.\nEl administrador, o la persona que en especial determine la asamblea, realizará\nlas gestiones necesarias para protocolizar, ante notario público, las modificaciones\nal acta constitutiva aprobadas por la asamblea e inscribirlas en el Registro Público\nde la Propiedad y del Comercio del Instituto de Seguridad Jurídica Patrimonial de\nYucatán.\nEl acta deberá seguir el procedimiento de modificación que se señala en este\nartículo solo cuando se efectúen cambios referentes a la creación, ampliación,\nreducción o extinción de áreas y bienes de uso común o de unidades de propiedad\nexclusiva."
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_9",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "II",
+        "nombre_capitulo": "Constitución, modificación y extinción del régimen de propiedad en condominio",
+        "seccion": null,
+        "nombre_seccion": null,
+        "articulo": 9,
+        "titulo": "Extinción del régimen de propiedad en condominio"
+      },
+      "texto_original": "Artículo 9. Extinción del régimen de propiedad en condominio\nEl régimen de propiedad en condominio podrá extinguirse por acuerdo de la\nasamblea de conversión en copropiedad ordinaria y, para su aprobación, se\nrequerirá el voto en ese sentido de los condóminos que representen, al menos, el\n75% de la cuota de participación.\nEl acta de la sesión de la asamblea en que se apruebe la extinción del régimen de\npropiedad en condominio deberá constar en escritura pública e inscribirse en el\nRegistro Público de la Propiedad y del Comercio del Instituto de Seguridad Jurídica\nPatrimonial de Yucatán.\nLos condóminos podrán modificar, en el mismo acuerdo de extinción, las cuotas\nde participación establecidas en el acta constitutiva, así como cualquier otro punto\nque consideren conveniente."
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_10",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "III",
+        "nombre_capitulo": "Normatividad complementaria de los condominios",
+        "seccion": null,
+        "nombre_seccion": null,
+        "articulo": 10,
+        "titulo": "Estatutos"
+      },
+      "texto_original": "Artículo 10. Estatutos\nLos estatutos del condominio no podrán contravenir lo dispuesto en el acta\nconstitutiva ni las disposiciones imperativas que esta ley establece.\nLos estatutos podrán regular, entre otros, los siguientes aspectos:\nI. Los derechos y obligaciones de los condóminos respecto de la unidad de\npropiedad exclusiva y las áreas y bienes de uso común, así como las limitaciones\na que quedan sujetos por el uso y goce de tales bienes.\nII. Los órganos de administración del condominio, así como sus\natribuciones, cuando sean diferentes a las establecidas en esta ley.\nIII. Los procedimientos para la elección de las personas que ocuparán los\ncargos de administración del condominio y su duración.\nIV. Los mecanismos para llevar a cabo la convocatoria y el desarrollo de las\nsesiones de la asamblea.\nV. La forma de integrar y remover al comité de vigilancia, así como las\natribuciones que se le confieran.\nVI. Las reglas especiales para la determinación de las cuotas de\nadministración que deberán ser aportadas por los condóminos.\nVII. Los procedimientos para el cobro de las cuotas de administración, así\ncomo la forma en la que habrá de operar el fondo de administración.\nVIII. El porcentaje del presupuesto que deberá ser destinado al fondo de\nreserva.\nIX. El funcionamiento e integración de fondos diferentes a los regulados en\nesta ley.\nX. La tasa moratoria que se aplicará a los adeudos de los condóminos.\nXI. Las reglas mediante las cuales se suspenderá, en su caso, el derecho a\nvoto de los condóminos.\nXII. Las sanciones que podrán aplicarse a los condóminos que no cumplan\ncon sus obligaciones.\nEsta ley será de aplicación supletoria para las disposiciones no establecidas en\nlos estatutos.\nLos estatutos deberán inscribirse en el Registro Público de la Propiedad y del\nComercio del Instituto de Seguridad Jurídica Patrimonial de Yucatán."
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_11",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "III",
+        "nombre_capitulo": "Normatividad complementaria de los condominios",
+        "seccion": null,
+        "nombre_seccion": null,
+        "articulo": 11,
+        "titulo": "Reglamentos Interiores"
+      },
+      "texto_original": "Artículo 11. Reglamentos Interiores\nLa asamblea podrá expedir uno o más reglamentos interiores, los cuales\ncontendrán las reglas internas relativas a la cultura de vida en condominio, la\nutilización de las áreas y bienes de uso común y de las propias unidades de\npropiedad exclusiva cuando puedan afectar a otros condóminos.\nLos reglamentos interiores podrán contener disposiciones relativas a:\nI. La adecuada administración, mantenimiento y operación del condominio.\nII. Los instrumentos necesarios que propicien la integración, organización y\ndesarrollo de la comunidad.\nIII. Los horarios para realizar determinadas actividades dentro de las\nunidades de propiedad exclusiva y para el uso y aprovechamiento de las áreas y\nbienes de uso común.\nIV. Los criterios para el uso y disfrute de los bienes de uso común.\nV. La tenencia de animales en las unidades de propiedad exclusiva, así\ncomo en las áreas y bienes de uso común.\nVI. Los demás aspectos que los condóminos consideren necesarias para el\ndesarrollo armónico de la vida en común."
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_12",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "IV",
+        "nombre_capitulo": "Condóminos",
+        "seccion": null,
+        "nombre_seccion": null,
+        "articulo": 12,
+        "titulo": "Derechos y obligaciones de los condóminos"
+      },
+      "texto_original": "Artículo 12. Derechos y obligaciones de los condóminos\nLos condóminos tendrán los siguientes derechos y obligaciones:\nI. Usar las unidades de propiedad exclusiva que le pertenezcan de\nconformidad con su uso y destino, y en los términos de lo dispuesto en el acta\nconstitutiva, los estatutos, los reglamentos interiores del condominio, esta ley y\ndemás disposiciones legales y normativas aplicables.\nII. Usar las áreas y bienes de uso común y gozar de los servicios e\ninstalaciones generales, de conformidad con su naturaleza y destino, en los\ntérminos de lo dispuesto en esta ley, el acta constitutiva, los estatutos, los\nreglamentos interiores del condominio y demás disposiciones legales y normativas\naplicables, así como abstenerse de realizar señalamientos o delimitaciones de\nexclusividad sobre dichas áreas y bienes muebles que se ubiquen dentro de ellas.\nIII. Participar con voz y voto en las sesiones de la asamblea.\nIV. Someter a consideración de la asamblea los asuntos que considere\ndeban tratarse en las sesiones.\nV. Enajenar, arrendar o gravar las unidades de propiedad exclusiva que le\npertenezcan junto con su cuota de participación, en los términos de lo dispuesto\nen el acta constitutiva, los estatutos y en las disposiciones legales y normativas\naplicables.\nVI. Cubrir las cuotas de administración del condominio conforme al\npresupuesto aprobado por la asamblea, así como las extraordinarias que se\ndeterminen.\nVII. Realizar las obras que requieran los entrepisos, suelos, pavimentos u\notras divisiones que colinden con su unidad de propiedad exclusiva, en\ncorresponsabilidad con los condóminos propietarios de las demás unidades de\npropiedad exclusiva que compartan dichas divisiones.\nVIII. Realizar obras y reparaciones en su unidad de propiedad exclusiva,\nsiempre y cuando estas no afecten la imagen arquitectónica, estabilidad,\nseguridad, salubridad o comodidad del condominio, y no se lleven a cabo fuera de\nlos horarios que, en su caso, se establezcan en los reglamentos respectivos.\nIX. Abstenerse de realizar cualquier acción u omisión que afecte los\nderechos, la gobernabilidad, sustentabilidad, tranquilidad, comodidad, estabilidad,\nseguridad o salubridad de los condóminos y ocupantes, o del condominio.\nX. Cumplir y respetar las disposiciones establecidas en esta ley, el acta\nconstitutiva, los estatutos y los reglamentos interiores del condominio.\nXI. Ejercer los cargos a los que sean designados por la asamblea.\nXII. Tener acceso a la información sobre los fondos del condominio y su\nmanejo.\nXIII. Pagar las contribuciones municipales, estatales y federales que\ncorrespondan a sus unidades de propiedad exclusiva así como, de manera\nproporcional, a las áreas y bienes de uso común.\nXIV. Los demás que se establezcan en esta ley, el Código Civil del Estado\nde Yucatán, el acta constitutiva, los estatutos y reglamentos interiores del\ncondominio, y demás disposiciones legales y normativas aplicables."
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_13",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "IV",
+        "nombre_capitulo": "Condóminos",
+        "seccion": null,
+        "nombre_seccion": null,
+        "articulo": 13,
+        "titulo": "Notificaciones"
+      },
+      "texto_original": "Artículo 13. Notificaciones\nLas convocatorias, así como los demás comunicados que la asamblea, el\nadministrador y, en su caso, los demás órganos del condominio deban efectuar,\nse notificarán en las unidades de propiedad exclusiva, a menos que el condómino\nhaya designado ante el administrador un domicilio diferente, y en los estrados que\nse establezcan para tal efecto en un lugar visible del condominio.\nSe podrán realizar notificaciones por medio de correo electrónico o por cualquier\notro medio, cuando así se establezca en los estatutos, y el o los condóminos de\nque se trate, lo hayan manifestado por escrito o de forma oral en una sesión de la\nasamblea."
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_14",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "IV",
+        "nombre_capitulo": "Condóminos",
+        "seccion": null,
+        "nombre_seccion": null,
+        "articulo": 14,
+        "titulo": "Divisiones entre unidades de propiedad exclusiva"
+      },
+      "texto_original": "Artículo 14. Divisiones entre unidades de propiedad exclusiva\nLos condóminos con unidades de propiedad exclusiva colindantes serán\ncopropietarios de los entrepisos, muros y demás divisiones que compartan entre\nsí.\nLos condóminos a que se refiere este artículo serán responsables de la realización\nde las obras de mantenimiento que requieran las divisiones de sus unidades de\npropiedad exclusiva colindantes, siempre que dichas obras no deriven de un daño\ncausado por alguno de los condóminos en específico, en cuyo caso la\nresponsabilidad de la realización de la obra corresponderá exclusivamente a este."
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_15",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "IV",
+        "nombre_capitulo": "Condóminos",
+        "seccion": null,
+        "nombre_seccion": null,
+        "articulo": 15,
+        "titulo": "Otorgamiento de derechos de uso a un tercero"
+      },
+      "texto_original": "Artículo 15. Otorgamiento de derechos de uso a un tercero\nCuando el condómino, mediante cualquier instrumento legal, otorgue\ntemporalmente los derechos de uso y aprovechamiento que le corresponden a un\ntercero, deberá definir en el contrato respectivo si él o el tercero será quien tenga\nlos derechos y las obligaciones a que se refiere el artículo 12 de esta ley, en su\ndefecto, se entenderá que los tendrá el condómino, incluso el derecho a voz y voto\nen la asamblea.\nCuando se convenga que el tercero sea quien tenga las obligaciones a que se\nrefiere el artículo 12 de esta ley, se considerará al condómino, responsable\nsolidario de estas.\nEl condómino de que se trate deberá notificar tal situación al administrador,\nmediante escrito firmado por las partes involucradas, al que se adjuntará una copia\ncertificada del contrato respectivo, en un plazo que no exceda de cinco días\nnaturales contados a partir de la fecha de su celebración."
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_16",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "V",
+        "nombre_capitulo": "Unidades de propiedad exclusiva",
+        "seccion": null,
+        "nombre_seccion": null,
+        "articulo": 16,
+        "titulo": "Anexos de las unidades de propiedad exclusiva"
+      },
+      "texto_original": "Artículo 16. Anexos de las unidades de propiedad exclusiva\nEl derecho de propiedad de los condóminos sobre sus unidades de propiedad\nexclusiva incluye los elementos anexos que le correspondan, como cajones de\nestacionamiento, cuarto de servicio, área de tendido, lavaderos y cualquier otro\nque no forme parte de las áreas y bienes de uso común, y que se le hayan\nasignado de conformidad con el acta constitutiva correspondiente."
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_17",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "V",
+        "nombre_capitulo": "Unidades de propiedad exclusiva",
+        "seccion": null,
+        "nombre_seccion": null,
+        "articulo": 17,
+        "titulo": "Derecho del tanto"
+      },
+      "texto_original": "Artículo 17. Derecho del tanto\nEn caso de que un condómino desee vender una unidad de propiedad exclusiva,\ngozarán del derecho del tanto para adquirirla los copropietarios, usufructuarios y\narrendatarios en los términos del Código Civil del Estado de Yucatán."
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_18",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "V",
+        "nombre_capitulo": "Unidades de propiedad exclusiva",
+        "seccion": null,
+        "nombre_seccion": null,
+        "articulo": 18,
+        "titulo": "Enajenación de unidades de propiedad exclusiva"
+      },
+      "texto_original": "Artículo 18. Enajenación de unidades de propiedad exclusiva\nLos contratos de enajenación de unidades de propiedad exclusiva deberán\notorgarse en escritura pública, en la cual se hará constar que se entregó al\nadquirente una copia certificada de los estatutos y reglamentos interiores del\ncondominio, y una constancia expedida por el administrador, de estar al corriente\nen el pago de las cuotas de administración correspondientes a la unidad que se\nadquiere."
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_19",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "VI",
+        "nombre_capitulo": "Áreas y bienes de uso común",
+        "seccion": null,
+        "nombre_seccion": null,
+        "articulo": 19,
+        "titulo": "Copropiedad de las áreas y bienes de uso común"
+      },
+      "texto_original": "Artículo 19. Copropiedad de las áreas y bienes de uso común\nEl derecho de copropiedad de cada condómino sobre las áreas y bienes de uso\ncomún será proporcional a la cuota de participación de su unidad de propiedad\nexclusiva establecido en el acta constitutiva."
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_20",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "VI",
+        "nombre_capitulo": "Áreas y bienes de uso común",
+        "seccion": null,
+        "nombre_seccion": null,
+        "articulo": 20,
+        "titulo": "Áreas y bienes que se presumen de uso común"
+      },
+      "texto_original": "Artículo 20. Áreas y bienes que se presumen de uso común\nSe presumirán como áreas y bienes de uso común:\nI. El terreno, los cimientos, sótanos, techos y azoteas de uso general,\npuertas de entrada, fachada, vestíbulos, galerías, bardas perimetrales, corredores,\nescaleras, elevadores, patios, jardines, plazas, senderos, circulaciones interiores,\ncalzadas, andadores, instalaciones deportivas, de recreo, de recepción o reunión\nsocial y los espacios señalados para cajones de estacionamiento de vehículos\ndistintos a los correspondientes a las unidades de propiedad exclusiva en los\ntérminos del acta constitutiva correspondiente.\nII. Los locales e instalaciones destinados a la administración, portería y\nalojamiento del portero y los vigilantes, así como los aparatos e infraestructura\ncorrespondientes a los servicios generales del condominio.\nIII. Los equipos, aparatos, accesorios, y demás complementos que\nconforman las redes, ramales o sistemas de alimentación y distribución,\nalmacenamiento, desalojo, descargas, tratamiento, acometidas y tableros de\nmedición de las instalaciones e infraestructura de los bienes y servicios públicos y\nde sistemas de emergencia y protección civil, aun cuando se encuentren\ninstalados en los espacios de las unidades de propiedad exclusiva.\nIV. Los bienes muebles instalados o ubicados dentro de las áreas y bienes\nde uso común que sean de utilidad para el aprovechamiento de estos.\nV. Las demás áreas y bienes del inmueble que se designen con tal carácter\nen el acta constitutiva."
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_21",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "VI",
+        "nombre_capitulo": "Áreas y bienes de uso común",
+        "seccion": null,
+        "nombre_seccion": null,
+        "articulo": 21,
+        "titulo": "Utilización de las áreas y bienes de uso común"
+      },
+      "texto_original": "Artículo 21. Utilización de las áreas y bienes de uso común\nLas áreas y bienes de uso común deberán ser utilizados de manera equitativa por\nlos condóminos y ocupantes del condominio. Únicamente se podrán utilizar de\nmanera exclusiva o preferente cuando la asamblea así lo apruebe."
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_22",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "VI",
+        "nombre_capitulo": "Áreas y bienes de uso común",
+        "seccion": null,
+        "nombre_seccion": null,
+        "articulo": 22,
+        "titulo": "Abstención en la utilización de áreas y bienes de uso común"
+      },
+      "texto_original": "Artículo 22. Abstención en la utilización de áreas y bienes de uso común\nLa abstención en el ejercicio de los derechos sobre las áreas y bienes de uso\ncomún no exime a los condóminos del cumplimento de las obligaciones que\nrespecto a dichas áreas y bienes les impone esta ley, el Código Civil del Estado\nde Yucatán, el acta constitutiva, los estatutos del condominio y demás\ndisposiciones legales y normativas aplicables."
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_23",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "VI",
+        "nombre_capitulo": "Áreas y bienes de uso común",
+        "seccion": null,
+        "nombre_seccion": null,
+        "articulo": 23,
+        "titulo": "Enajenación y arrendamiento de las áreas y bienes de uso común"
+      },
+      "texto_original": "Artículo 23. Enajenación y arrendamiento de las áreas y bienes de uso común\nLas áreas y bienes inmuebles de uso común no podrán ser objeto de enajenación,\nni de usufructo exclusivo de determinados condóminos, poseedores o terceros.\nLos bienes muebles de uso común, por acuerdo de la asamblea, podrán\nenajenarse o desecharse cuando dejen de ser útiles para el condominio."
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_24",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "VI",
+        "nombre_capitulo": "Áreas y bienes de uso común",
+        "seccion": null,
+        "nombre_seccion": null,
+        "articulo": 24,
+        "titulo": "Obras y servicios en las áreas y bienes de uso común"
+      },
+      "texto_original": "Artículo 24. Obras y servicios en las áreas y bienes de uso común\nLas obras y servicios de mantenimiento, reparaciones y mejora se solventarán con\ncargo al fondo de administración que se integre con las cuotas de administración\nde los condóminos. Cuando este fondo no baste o sea preciso efectuar obras y\nservicios no previstos, la asamblea resolverá lo que, conforme a los estatutos del\ncondominio, sea procedente."
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_25",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "VI",
+        "nombre_capitulo": "Áreas y bienes de uso común",
+        "seccion": null,
+        "nombre_seccion": null,
+        "articulo": 25,
+        "titulo": "Inventario de bienes muebles"
+      },
+      "texto_original": "Artículo 25. Inventario de bienes muebles\nEl administrador llevará un inventario de todos los bienes muebles de uso común,\ncon las formalidades que se determinen en los estatutos del condominio.\nTratándose de los bienes muebles que se consuman por su simple uso,\ncorresponderá al administrador su adquisición y reposición, debiendo rendir un\ninforme anual a la asamblea.\nEs responsabilidad del administrador presentar un informe anual a la asamblea\nrespecto del estado que guarden los bienes muebles ubicados en las áreas de uso\ncomún, precisando los que deban de ser dados de baja por ya no ser apropiados\npara su uso y aquellos que hayan sido objeto de robo o extravío.\nEl inventario de bienes podrá ser consultado en cualquier momento por cualquiera\nde los condóminos, previa solicitud al administrador por escrito o por la vía que\nestablezca el reglamento interior.\nPárrafo reformado DO 03-01-2024"
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_26",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "VII",
+        "nombre_capitulo": "Administración del condominio",
+        "seccion": "primera",
+        "nombre_seccion": "Disposiciones comunes",
+        "articulo": 26,
+        "titulo": "Regulación dispositiva"
+      },
+      "texto_original": "Artículo 26. Regulación dispositiva\nEn lo no previsto por el acta constitutiva y los estatutos se aplicarán las normas\nprevistas en este capítulo."
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_27",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "VII",
+        "nombre_capitulo": "Administración del condominio",
+        "seccion": "primera",
+        "nombre_seccion": "Disposiciones comunes",
+        "articulo": 27,
+        "titulo": "Órganos del condominio"
+      },
+      "texto_original": "Artículo 27. Órganos del condominio\nEl gobierno y la administración del condominio estarán a cargo de la asamblea y\nel administrador, respectivamente, en los términos de los estatutos y de esta ley.\nLos estatutos regularán la existencia de los diversos cargos y las facultades de\nestos. En caso de que los estatutos no lo regulen, se estará a lo dispuesto en esta\nley.\nEn ningún caso, las facultades otorgadas por los estatutos podrán limitar los\nderechos de los condóminos o restringir la supremacía de la asamblea."
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_28",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "VII",
+        "nombre_capitulo": "Administración del condominio",
+        "seccion": "primera",
+        "nombre_seccion": "Disposiciones comunes",
+        "articulo": 28,
+        "titulo": "Designación de los cargos"
+      },
+      "texto_original": "Artículo 28. Designación de los cargos\nEl procedimiento para la designación y suplencia de los cargos se establecerá en\nlos estatutos del condominio. Cuando estos no lo prevean, se entenderá que es\npor elección cuando existan candidatos o por sorteo cuando no los hubiera.\nEl ejercicio de todos los cargos regulados en esta ley es honorario, salvo el de\nadministrador, cuando la asamblea le fije emolumentos en los términos del artículo\n40 de esta ley.\nCuando los estatutos no dispongan lo contrario, los cargos serán ocupados por los\ncondóminos. El cargo de presidente de la asamblea siempre será ocupado por un\ncondómino."
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_29",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "VII",
+        "nombre_capitulo": "Administración del condominio",
+        "seccion": "primera",
+        "nombre_seccion": "Disposiciones comunes",
+        "articulo": 29,
+        "titulo": "Duración de los cargos"
+      },
+      "texto_original": "Artículo 29. Duración de los cargos\nEl nombramiento del administrador y de los demás cargos se hará por el plazo que\nseñalen los estatutos o por un año, pudiendo ser reelegidos por plazos iguales\nindefinidamente.\nEl presidente y secretario de la asamblea estarán en funciones por el tiempo que\ndure la sesión.\nLos cargos se entenderán prorrogados hasta que entren en funciones quienes\ndeban sustituirlos."
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_30",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "VII",
+        "nombre_capitulo": "Administración del condominio",
+        "seccion": "segunda",
+        "nombre_seccion": "Asamblea",
+        "articulo": 30,
+        "titulo": "Atribuciones de la asamblea"
+      },
+      "texto_original": "Artículo 30. Atribuciones de la asamblea\nLa asamblea es el órgano supremo del condominio y la máxima instancia para la\ndiscusión y toma de acuerdos, la cual contará con las siguientes atribuciones:\nI. Modificar el acta constitutiva y expedir o reformar los estatutos y los\nreglamentos interiores que considere.\nII. Extinguir el régimen de propiedad en condominio.\nIII. Nombrar y remover libremente a las personas que ocuparán los cargos\nque establezcan los estatutos o, en su defecto, esta ley.\nIV. Designar a un apoderado general para administrar bienes y para pleitos\ny cobranzas.\nV. Crear, modificar o extinguir los comités de condóminos que considere.\nVI. Aprobar la realización de obras en las áreas y bienes de uso común.\nVII. Discutir y, en su caso, aprobar el presupuesto de gastos para el año\nsiguiente.\nVIII. Examinar y, en su caso, aprobar los estados de cuenta que someta el\nadministrador a su consideración, así como los informes anuales de actividades\nque rindan el administrador, el comité de vigilancia y los demás comités de\ncondóminos, en su caso.\nIX. Determinar el monto de la garantía que deba otorgar el administrador\nrespecto al desempeño de su cargo, y al manejo de los fondos bajo su\nadministración.\nX. Instruir a quien la propia asamblea designe para proceder ante las\nautoridades competentes cuando el administrador infrinja esta ley, el acta\nconstitutiva, los estatutos y las demás disposiciones legales y normativas\naplicables.\nXI. Adoptar las medidas conducentes sobre los asuntos de interés común\nque no se encuentren comprendidos dentro de las funciones conferidas al\nadministrador.\nXII. Las demás que le confiera esta ley, el acta constitutiva, los estatutos del\ncondominio y demás disposiciones legales y normativas aplicables, así como todas\naquellas que no estén conferidas de forma particular a otro órgano."
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_31",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "VII",
+        "nombre_capitulo": "Administración del condominio",
+        "seccion": "segunda",
+        "nombre_seccion": "Asamblea",
+        "articulo": 31,
+        "titulo": "Sesiones de la asamblea"
+      },
+      "texto_original": "Artículo 31. Sesiones de la asamblea\nLa asamblea sesionará de forma ordinaria al menos una vez al año y en forma\nextraordinaria cuando sea necesario a juicio del administrador o a solicitud de los\ncondóminos que representen, al menos, el 25% del total de la cuota de\nparticipación, salvo que en los estatutos se disponga de manera diferente.\nSe procurará que se realice una sesión ordinaria durante los dos últimos meses\ndel año, en la cual se aprobarán las cuentas del año que concluye y el presupuesto\npara el año siguiente y se presentarán los informes anuales de actividades del\nadministrador, del comité de vigilancia y los demás comités, en su caso.\nLos condóminos podrán solicitar al administrador que convoque a sesión. Si este\nno lo hiciera, aquellos podrán expedir la convocatoria correspondiente siempre que\nalcancen, cuando menos, el porcentaje señalado en el primer párrafo.\nLas sesiones de la asamblea se podrán realizar dentro o fuera del condominio,\nsiempre que tengan lugar en el territorio del estado de Yucatán."
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_32",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "VII",
+        "nombre_capitulo": "Administración del condominio",
+        "seccion": "segunda",
+        "nombre_seccion": "Asamblea",
+        "articulo": 32,
+        "titulo": "Convocatorias"
+      },
+      "texto_original": "Artículo 32. Convocatorias\nEl administrador expedirá y notificará las convocatorias para las sesiones.\nLas convocatorias para las sesiones ordinarias de la asamblea deberán notificarse\na sus integrantes con, al menos, cinco días naturales de anticipación a la fecha en\nque pretenda celebrarse la sesión de que se trate. Las convocatorias para las\nsesiones extraordinarias se notificarán con, al menos, veinticuatro horas de\nanticipación.\nEl orden del día, con la relación de todos los temas que se tratarán en la sesión,\nse anexará a la convocatoria, así como toda la información que se vaya a presentar\npara la aprobación de los condóminos, o en su defecto señalará que dicha\ninformación estará a disposición de cualquier condómino a partir de la fecha de la\ncitada convocatoria.\nLas convocatorias se enviarán al domicilio de cada condómino y se publicarán en\nlos estrados del condominio o en un lugar visible de este, habilitado al efecto."
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_33",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "VII",
+        "nombre_capitulo": "Administración del condominio",
+        "seccion": "segunda",
+        "nombre_seccion": "Asamblea",
+        "articulo": 33,
+        "titulo": "Cuórum"
+      },
+      "texto_original": "Artículo 33. Cuórum\nLas sesiones de la asamblea serán válidas, en primera convocatoria, con la\nasistencia de los condóminos que representen al menos el 51% de las cuotas de\nparticipación, y, en segunda convocatoria, con los condóminos que asistan.\nLos condóminos asistirán a las sesiones de la asamblea personalmente o por\nconducto de un apoderado especial designado mediante carta poder otorgada ante\ndos testigos o ante notario público."
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_34",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "VII",
+        "nombre_capitulo": "Administración del condominio",
+        "seccion": "segunda",
+        "nombre_seccion": "Asamblea",
+        "articulo": 34,
+        "titulo": "Acuerdos"
+      },
+      "texto_original": "Artículo 34. Acuerdos\nCada condómino tendrá un porcentaje de votación igual al de la cuota de\nparticipación que le corresponde a su unidad de propiedad exclusiva.\nLos acuerdos de la asamblea se tomarán por mayoría simple de votos de los\ncondóminos que asistan a la sesión de que se trate, salvo los casos en que, de\nconformidad con lo establecido en esta ley o los estatutos del condominio, se\nrequiera de una mayoría calificada diferente.\nSolo pueden adoptarse acuerdos sobre los asuntos incluidos en el orden del día.\nNo obstante, la asamblea puede destituir al administrador o a cualquier otra\npersona que ejerza un cargo, emprender acciones contra ellos y nombrar a sus\nsustitutos, aun cuando no conste en el orden del día.\nLos estatutos podrán establecer la suspensión del derecho a voto de los\ncondóminos que tengan cuotas de administración pendientes de pago, quienes\npodrán, sin embargo, asistir con derecho a voz a las sesiones de la asamblea."
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_35",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "VII",
+        "nombre_capitulo": "Administración del condominio",
+        "seccion": "segunda",
+        "nombre_seccion": "Asamblea",
+        "articulo": 35,
+        "titulo": "Mayoría calificada"
+      },
+      "texto_original": "Artículo 35. Mayoría calificada\nLos estatutos podrán establecer mayorías calificadas para la adopción de\ndeterminados acuerdos de la asamblea; no obstante, no podrán establecer\nmayorías calificadas para la aprobación de:\nI. La ejecución de obras o el establecimiento de servicios con el objeto de\nmejorar la accesibilidad universal para las personas con discapacidad.\nII. La ejecución de obras para el acceso a los servicios de radiodifusión\nsonora, teléfono, Internet y televisión analógica, digital, satelital o por cable.\nIII. La instalación de sistemas de aprovechamiento de la energía solar, o\nbien de aquellos que tengan por objeto mejorar la eficiencia energética o hídrica.\nIV. La instalación de infraestructura que fortalezca la seguridad del\ncondominio."
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_36",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "VII",
+        "nombre_capitulo": "Administración del condominio",
+        "seccion": "segunda",
+        "nombre_seccion": "Asamblea",
+        "articulo": 36,
+        "titulo": "Acta de sesión"
+      },
+      "texto_original": "Artículo 36. Acta de sesión\nEl secretario, una vez agotados los temas del orden del día, leerá los acuerdos\nadoptados para que la asamblea apruebe la exactitud en la redacción.\nEl acta de la sesión será firmada por el presidente y el secretario, quien la\nredactará, y deberá contener:\nI. La fecha y lugar de celebración de la sesión.\nII. El carácter ordinario o extraordinario de la sesión.\nIII. La circunstancia de que la sesión se haya realizado en primera o\nsegunda convocatoria.\nIV. El orden del día.\nV. La relación de personas que hayan asistido, el carácter en que lo hayan\nhecho y el porcentaje de votación que cada una de ellas represente.\nVI. Los acuerdos adoptados con la indicación del resultado de las\nvotaciones.\nEl acta deberá constar en un libro, cuya elaboración, actualización y custodia,\nestará a cargo del administrador.\nLos condóminos asistentes a la asamblea se tendrán por notificados de los\nacuerdos tomados, el propio día de su realización.\nEl administrador notificará, por medio de los estrados del condominio, el acta de la\nsesión a los condóminos que no hubieran asistido, en un plazo de diez días,\ncontados a partir de la fecha en que se celebró la sesión."
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_37",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "VII",
+        "nombre_capitulo": "Administración del condominio",
+        "seccion": "segunda",
+        "nombre_seccion": "Asamblea",
+        "articulo": 37,
+        "titulo": "Facultades y obligaciones del presidente"
+      },
+      "texto_original": "Artículo 37. Facultades y obligaciones del presidente\nEl presidente de la asamblea tendrá las siguientes facultades y obligaciones:\nI. Presidir las sesiones de la asamblea.\nII. Participar con voz y voto en las sesiones de la asamblea.\nIII. Someter las propuestas de acuerdos a la consideración y votación de los\nintegrantes de la asamblea.\nIV. Las demás que le confiera esta ley, el acta constitutiva, los estatutos del\ncondominio, en su caso, sus reglamentos interiores, y demás disposiciones legales\ny normativas aplicables."
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_38",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "VII",
+        "nombre_capitulo": "Administración del condominio",
+        "seccion": "segunda",
+        "nombre_seccion": "Asamblea",
+        "articulo": 38,
+        "titulo": "Facultades y obligaciones del secretario"
+      },
+      "texto_original": "Artículo 38. Facultades y obligaciones del secretario\nEl secretario de la asamblea tendrá las siguientes facultades y obligaciones:\nI. Participar con voz y voto en las sesiones de la asamblea. En caso de que\nno sea condómino, participará únicamente con derecho a voz.\nII. Verificar la asistencia a las sesiones de la asamblea y la suscripción de\nla lista respectiva por parte de los condóminos.\nIII. Verificar la votación de las sesiones de la asamblea.\nIV. Auxiliar al presidente en las sesiones de la asamblea.\nV. Requerir en su caso la documentación que sea necesaria para anexar al\nacta de la sesión.\nVI. Las demás que le confiera esta ley, el acta constitutiva, los estatutos del\ncondominio y demás disposiciones legales y normativas aplicables."
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_39",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "VII",
+        "nombre_capitulo": "Administración del condominio",
+        "seccion": "tercera",
+        "nombre_seccion": "Administrador",
+        "articulo": 39,
+        "titulo": "Administrador"
+      },
+      "texto_original": "Artículo 39. Administrador\nEl administrador será el condómino o la persona física o moral que designe la\nasamblea, en los términos de los estatutos del condominio o de esta ley, para\ndesempeñar las funciones de administración."
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_40",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "VII",
+        "nombre_capitulo": "Administración del condominio",
+        "seccion": "tercera",
+        "nombre_seccion": "Administrador",
+        "articulo": 40,
+        "titulo": "Emolumentos"
+      },
+      "texto_original": "Artículo 40. Emolumentos\nLa asamblea de condóminos, en la sesión que realice la designación del\nadministrador, podrá fijar sus emolumentos, los cuales formarán parte del\npresupuesto anual del condominio."
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_41",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "VII",
+        "nombre_capitulo": "Administración del condominio",
+        "seccion": "tercera",
+        "nombre_seccion": "Administrador",
+        "articulo": 41,
+        "titulo": "Fianza para el administrador que no fuere condómino"
+      },
+      "texto_original": "Artículo 41. Fianza para el administrador que no fuere condómino\nEl administrador que no fuere condómino deberá otorgar fianza para el ejercicio\nde su encargo, en un plazo no mayor a treinta días naturales contados a partir del\ndía de su designación, salvo que los estatutos del condominio dispongan algo\ndiferente."
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_42",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "VII",
+        "nombre_capitulo": "Administración del condominio",
+        "seccion": "tercera",
+        "nombre_seccion": "Administrador",
+        "articulo": 42,
+        "titulo": "Facultades y obligaciones del administrador"
+      },
+      "texto_original": "Artículo 42. Facultades y obligaciones del administrador\nEl administrador tendrá las siguientes facultades y obligaciones:\nI. Elaborar las convocatorias y el orden del día de las sesiones de la\nasamblea.\nII. Notificar las convocatorias a los integrantes de la asamblea.\nIII. Tener la representación legal de la asamblea.\nIV. Difundir los acuerdos adoptados en sesiones y vigilar su cumplimiento,\nde conformidad con los plazos establecidos y las responsabilidades asignadas.\nV. Determinar la celebración de sesiones extraordinarias.\nVI. Ejecutar y verificar el cumplimiento de los acuerdos de la asamblea, e\ninformarle respecto a ello.\nVII. Levantar y resguardar las actas de las sesiones de la asamblea, así\ncomo la demás documentación relativa a estas.\nVIII. Certificar los documentos de la asamblea.\nIX. Cuidar y vigilar los exteriores de las unidades de propiedad exclusiva y\nlas áreas y bienes de uso común, así como el adecuado funcionamiento, operación\ny mantenimiento, reparación y reposición de las instalaciones, servicios y bienes\nde uso común, conforme a lo establecido en esta ley, el acta constitutiva, los\nestatutos del condominio y demás disposiciones legales y normativas aplicables.\nX. Presentar a la asamblea un informe anual de actividades y el estado de\ncuentas del ejercicio anual precedente.\nXI. Elaborar la propuesta de presupuesto para el año inmediato siguiente.\nXII. Recabar y conservar la documentación relacionada con el condominio,\nasí como ponerla a disposición de cualquier condómino que así lo solicite, salvo la\nque de acuerdo a los estatutos o esta ley deban ser conservados por otra persona.\nXIII. Gestionar la realización de las obras de conservación y reparación de\ncarácter urgente o conveniente en las áreas y bienes de uso común, con cargo al\nfondo de reserva.\nXIV. Representar legalmente al condominio y los condóminos, en todos los\nasuntos comunes relacionados con el condominio, sea que se promuevan a\nnombre o en contra de ellos, con las facultades de representación de un apoderado\ngeneral para administrar bienes y para pleitos y cobranzas, pero no las especiales\nque requieran cláusula especial, salvo que se le confieran por los estatutos o por\nla asamblea.\nXV. Ejecutar los acuerdos de la asamblea de condóminos, con excepción\nde los casos en que esta designe a otras personas para tal efecto.\nXVI. Recaudar, de cada uno de los condóminos, las aportaciones\ncorrespondientes a las cuotas de administración ordinarias, extraordinarias o a\ncualquier otro tipo de contribución destinada a la integración del fondo de\nadministración o al mantenimiento, reparación, reposición y conservación del\ncondominio, y otorgar recibo a cada condómino por dichas aportaciones.\nXVII. Efectuar los gastos necesarios para el mantenimiento, reparación,\nreposición, operación y administración del condominio, con cargo al fondo de\nadministración, y según lo establecido por la ley, el acta constitutiva y los estatutos\ndel condominio.\nXVIII. Entregar, con la periodicidad que señalen los estatutos, o\nmensualmente en su defecto, a cada condómino, el estado de cuenta que\ncontenga la relación pormenorizada de ingresos y egresos del período\ncorrespondiente; los montos de las cuotas de administración pendientes de\ncubrirse; el saldo resultante de los fondos y fines a los que se destinarán los\nrecursos en el período siguiente; las altas y bajas del inventario respecto de los\nbienes muebles ubicados en las áreas de uso común; y el señalamiento del plazo\npara formular observaciones y objeciones, en los términos del artículo 43 de esta\nley.\nXIX. Acudir ante notario público, o verificar que la persona designada para\nello, lo haga, para obtener la protocolización del acta de asamblea en la que se\naprueben modificaciones al acta constitutiva o a los estatutos, y verificar que se\ninscriba en el Registro Público de la Propiedad y del Comercio del Instituto de\nSeguridad Jurídica Patrimonial de Yucatán.\nXX. Vigilar la observancia y el cumplimiento de las disposiciones contenidas\nen esta ley, el acta constitutiva y los estatutos del condominio, así como hacer las\nadvertencias que correspondan.\nXXI. Llevar el inventario de bienes muebles.\nXXII. Gestionar con las autoridades competentes las licencias y permisos\nque sean necesarios para la realización de obras en las áreas y bienes de uso\ncomún del condominio.\nXXIII. Las demás que fueran necesarias para el adecuado funcionamiento\ny mantenimiento del condominio, de conformidad con esta ley, el acta constitutiva,\nlos estatutos del condominio y demás disposiciones legales y normativas\naplicables."
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_43",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "VII",
+        "nombre_capitulo": "Administración del condominio",
+        "seccion": "tercera",
+        "nombre_seccion": "Administrador",
+        "articulo": 43,
+        "titulo": "Observaciones y objeciones al estado de cuenta"
+      },
+      "texto_original": "Artículo 43. Observaciones y objeciones al estado de cuenta\nLos condóminos podrán formular observaciones y objeciones al estado de cuenta,\nde manera verbal, en la sesión en que el administrador lo presente a la asamblea\no, por escrito, en un plazo de cinco días contados a partir de la publicación del\nestado de cuenta en los estrados del condominio.\nTranscurrido dicho plazo se considerará que se está de acuerdo con el estado de\ncuenta de que se trate.\nEn caso de que los condóminos hagan observaciones al estado de cuenta, el\nadministrador, en un plazo de cinco días, contados a partir de aquel en que las\nreciba, deberá contestar lo que a su derecho convenga. En caso de que el\nadministrador no diera respuesta respecto de las observaciones o estas no\nsatisfagan al condómino que las realizó, se dará conocimiento de la situación a la\nAsamblea para que analice el caso y acuerde lo que sea procedente conforme a\nlas disposiciones legales y normativas aplicables."
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_44",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "VII",
+        "nombre_capitulo": "Administración del condominio",
+        "seccion": "tercera",
+        "nombre_seccion": "Administrador",
+        "articulo": 44,
+        "titulo": "Formalidades a la terminación del período del administrador"
+      },
+      "texto_original": "Artículo 44. Formalidades a la terminación del período del administrador\nTerminado el período de un administrador, este deberá entregar a quien lo\nsustituya, en un término que no exceda de siete días naturales, los estados de\ncuenta y, en general, toda la documentación y bienes que tuviera bajo su\nresponsabilidad con motivo de su encargo."
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_45",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "VII",
+        "nombre_capitulo": "Administración del condominio",
+        "seccion": "cuarta",
+        "nombre_seccion": "Comité de vigilancia",
+        "articulo": 45,
+        "titulo": "Objeto del comité de vigilancia"
+      },
+      "texto_original": "Artículo 45. Objeto del comité de vigilancia\nLos estatutos podrán prever la instalación de un comité de vigilancia, el cual tendrá\npor objeto supervisar las acciones del administrador en cumplimiento de sus\nfacultades y obligaciones, y dar seguimiento a la ejecución de los acuerdos de la\nasamblea. Si los estatutos no prevén la instalación del comité de vigilancia, los\ncondóminos que representen el 25% del total de las cuotas de participación podrán\nconvocar a una asamblea de condóminos, para instalar dicho comité."
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_46",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "VII",
+        "nombre_capitulo": "Administración del condominio",
+        "seccion": "cuarta",
+        "nombre_seccion": "Comité de vigilancia",
+        "articulo": 46,
+        "titulo": "Integración del comité de vigilancia"
+      },
+      "texto_original": "Artículo 46. Integración del comité de vigilancia\nEl comité de vigilancia se integrará por condóminos y funcionará en la forma que\nestablezcan los estatutos, pero deberá contar siempre con un presidente y, cuando\nmenos, dos vocales, quienes deberán ser condóminos.\nCuando los estatutos del condominio no establezcan la existencia del comité de\nvigilancia, o estableciéndolo, no regulen su funcionamiento, el comité deberá\nexpedir su reglamento interno.\nEl comité de vigilancia deberá rendir un informe anual a la asamblea."
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_47",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "VII",
+        "nombre_capitulo": "Administración del condominio",
+        "seccion": "cuarta",
+        "nombre_seccion": "Comité de vigilancia",
+        "articulo": 47,
+        "titulo": "Atribuciones del comité de vigilancia"
+      },
+      "texto_original": "Artículo 47. Atribuciones del comité de vigilancia\nEl comité de vigilancia tendrá, aun cuando no lo señalen los estatutos, las\nsiguientes atribuciones:\nI. Supervisar el adecuado desempeño de las funciones del administrador y\nprocurar el cumplimiento de lo establecido en esta ley, el acta constitutiva, los\nestatutos del condominio, los acuerdos de la asamblea, y demás disposiciones\nlegales y normativas aplicables.\nII. Revisar y emitir dictámenes de los estados de cuenta, comprobantes,\nlibros de actas y demás información relacionada con el condominio que rinda el\nadministrador.\nIII. Vigilar el adecuado manejo de los fondos del condominio.\nIV. Rendir un informe a la asamblea sobre las evaluaciones realizadas al\nadministrador.\nV. Coadyuvar con el administrador para velar por el adecuado cumplimiento\nde las obligaciones de los condóminos.\nVI. Las demás que le confieran esta ley, el acta constitutiva, los estatutos\ndel condominio y demás disposiciones legales y normativas aplicables."
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_48",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "VIII",
+        "nombre_capitulo": "Presupuesto del condominio",
+        "seccion": null,
+        "nombre_seccion": null,
+        "articulo": 48,
+        "titulo": "Presupuesto"
+      },
+      "texto_original": "Artículo 48. Presupuesto\nLa asamblea deberá aprobar, preferentemente, en los dos últimos meses del año,\nel presupuesto del condominio para el año siguiente, que contendrá, al menos, los\nsiguientes rubros:\nI. Los honorarios del administrador, en su caso.\nII. El pago de la prima del seguro a que se refiere el artículo 60 de esta ley.\nIII. Los costos ordinarios de mantenimiento, reparación o reposición de los\nbienes y áreas comunes.\nIV. La cantidad requerida para integrar el fondo de reserva, así como\ncualquier otro que se establezca en los estatutos.\nV. Los salarios y prestaciones del personal que labore en el condominio, en\nsu caso.\nVI. Los demás que establezcan los estatutos.\nLos gastos que sean acordados o autorizados por la asamblea a cargo de\ndeterminados condóminos o los referentes a los subcondominios no integrarán el\npresupuesto, salvo que los estatutos determinen lo contrario."
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_49",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "VIII",
+        "nombre_capitulo": "Presupuesto del condominio",
+        "seccion": null,
+        "nombre_seccion": null,
+        "articulo": 49,
+        "titulo": "Presupuesto no determinado"
+      },
+      "texto_original": "Artículo 49. Presupuesto no determinado\nCuando la asamblea no apruebe el presupuesto en el plazo establecido en el\nartículo anterior, se entenderá que el presupuesto es igual al autorizado para el\naño anterior."
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_50",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "VIII",
+        "nombre_capitulo": "Presupuesto del condominio",
+        "seccion": null,
+        "nombre_seccion": null,
+        "articulo": 50,
+        "titulo": "Determinación de las cuotas de administración"
+      },
+      "texto_original": "Artículo 50. Determinación de las cuotas de administración\nEl administrador, salvo disposición en contrario de los estatutos, deberá calcular\nlas cuotas de administración anuales de los condóminos con base en la operación\nresultante de multiplicar el monto del presupuesto del condominio por la cuota de\nparticipación correspondiente.\nLas cuotas de administración de los condóminos deberán ser cubiertas\nmensualmente; sin embargo, los estatutos podrán determinar períodos diferentes."
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_51",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "VIII",
+        "nombre_capitulo": "Presupuesto del condominio",
+        "seccion": null,
+        "nombre_seccion": null,
+        "articulo": 51,
+        "titulo": "Fondo de administración"
+      },
+      "texto_original": "Artículo 51. Fondo de administración\nCon las cuotas de administración de los condóminos se integrará un fondo de\nadministración que estará bajo el manejo y resguardo del administrador."
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_52",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "VIII",
+        "nombre_capitulo": "Presupuesto del condominio",
+        "seccion": null,
+        "nombre_seccion": null,
+        "articulo": 52,
+        "titulo": "Fondo de reserva"
+      },
+      "texto_original": "Artículo 52. Fondo de reserva\nLos condominios contarán con un fondo de reserva que se constituirá con el\nporcentaje de presupuesto que determinen los estatutos, el cual nunca podrá ser\ninferior al 5%.\nEl administrador solo podrá disponer del fondo de reserva, sin autorización de la\nasamblea, para casos urgentes.\nEl remanente del fondo de reserva de un año se integrará al del año siguiente, de\ntal forma que las aportaciones que los condóminos realicen se ajusten para llegar\nal porcentaje que señalen los estatutos o esta ley."
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_53",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "VIII",
+        "nombre_capitulo": "Presupuesto del condominio",
+        "seccion": null,
+        "nombre_seccion": null,
+        "articulo": 53,
+        "titulo": "Otros fondos"
+      },
+      "texto_original": "Artículo 53. Otros fondos\nEn los estatutos del condominio se podrá disponer la creación de los demás fondos\nque se consideren necesarios para el mejor funcionamiento de este."
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_54",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "VIII",
+        "nombre_capitulo": "Presupuesto del condominio",
+        "seccion": null,
+        "nombre_seccion": null,
+        "articulo": 54,
+        "titulo": "Inversión de fondos"
+      },
+      "texto_original": "Artículo 54. Inversión de fondos\nLos fondos, en tanto no se utilicen, podrán invertirse en valores a la vista de mínimo\nriesgo, previo acuerdo de la asamblea, en los términos de los estatutos."
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_55",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "VIII",
+        "nombre_capitulo": "Presupuesto del condominio",
+        "seccion": null,
+        "nombre_seccion": null,
+        "articulo": 55,
+        "titulo": "Cuotas de administración extraordinarias"
+      },
+      "texto_original": "Artículo 55. Cuotas de administración extraordinarias\nLa asamblea, en términos de lo dispuesto por los estatutos del condominio, o por\ncausas especiales, podrá acordar el establecimiento de cuotas de administración\nextraordinarias, no presupuestadas, cuando surjan necesidades o conveniencias\npara el condominio que no puedan ser cubiertas con lo recaudado en el fondo de\nadministración.\nEn ningún caso la suma de las cuotas extraordinarias de los condóminos podrá\nsuperar el 20% del presupuesto autorizado en el año, a menos que sean\naprobadas por el voto de los condóminos que representen, al menos, el 75% de la\ncuota de participación."
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_56",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "VIII",
+        "nombre_capitulo": "Presupuesto del condominio",
+        "seccion": null,
+        "nombre_seccion": null,
+        "articulo": 56,
+        "titulo": "Gastos especiales"
+      },
+      "texto_original": "Artículo 56. Gastos especiales\nCuando un condominio cuente con áreas destinadas al servicio de determinadas\nunidades de propiedad exclusiva, los gastos especiales que de dichas áreas se\nderiven estarán a cargo de los condóminos propietarios de estas.\nLos gastos especiales para ser válidos deberán ser propuestos y aprobados por\ntodos los condóminos que los asumirán. No obstante, la asamblea deberá\nautorizar la realización de cualquier obra que afecte la fachada de los bienes de\nuso común, incluso cuando esta sea asumida solo por una parte de los\ncondóminos."
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_57",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "VIII",
+        "nombre_capitulo": "Presupuesto del condominio",
+        "seccion": null,
+        "nombre_seccion": null,
+        "articulo": 57,
+        "titulo": "Intereses por no cubrir las cuotas de administración"
+      },
+      "texto_original": "Artículo 57. Intereses por no cubrir las cuotas de administración\noportunamente\nLas cuotas de administración, ordinarias y extraordinarias que no sean cubiertas\noportunamente por los condóminos en las fechas y bajo las formalidades\nestablecidas causarán intereses al tipo que para tal efecto se establezca en los\nestatutos del condominio, independientemente de las sanciones a que se hagan\nacreedores los condóminos por el incumplimiento del pago.\nEn caso de que los estatutos no prevean el interés a que se refiere este artículo,\nse aplicará el interés legal."
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_58",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "VIII",
+        "nombre_capitulo": "Presupuesto del condominio",
+        "seccion": null,
+        "nombre_seccion": null,
+        "articulo": 58,
+        "titulo": "Demanda por adeudos"
+      },
+      "texto_original": "Artículo 58. Demanda por adeudos\nTrae aparejada ejecución, en la vía ejecutiva civil, el estado de cuenta que refleje\nlos adeudos existentes, intereses moratorios o pena convencional que estipulen\nlos estatutos, siempre y cuando esté suscrito por el administrador y acompañado\nde copia, certificada por notario público, del acta de asamblea relativa o de los\nestatutos del condominio, en su caso, en que se hayan determinado las cuotas de\nadministración ordinarias y extraordinarias. Esta acción solo podrá ejercerse\ncuando existan dos o más cuotas de administración pendientes de pago."
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_59",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "VIII",
+        "nombre_capitulo": "Presupuesto del condominio",
+        "seccion": null,
+        "nombre_seccion": null,
+        "articulo": 59,
+        "titulo": "Daños y perjuicios"
+      },
+      "texto_original": "Artículo 59. Daños y perjuicios\nEl condómino que reiteradamente deje de cumplir con sus obligaciones, de\nconformidad con lo dispuesto en la ley, el acta constitutiva o los estatutos del\ncondominio, será responsable por los daños y perjuicios que cause a los otros\ncondóminos, y podrá ser demandado en los términos de la legislación aplicable."
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_60",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "VIII",
+        "nombre_capitulo": "Presupuesto del condominio",
+        "seccion": null,
+        "nombre_seccion": null,
+        "articulo": 60,
+        "titulo": "Seguro contra desastres naturales, explosiones e incendios"
+      },
+      "texto_original": "Artículo 60. Seguro contra desastres naturales, explosiones e incendios\nEl administrador, previo acuerdo de la asamblea, deberá, con cargo al fondo de\nadministración, contratar un seguro para el condominio contra desastres naturales,\nhuracanes, explosiones e incendios que garantice la restitución de las áreas y\nbienes de uso común, las fachadas de las unidades de propiedad exclusiva, así\ncomo cualquier daño que haya afectado la estructura y estabilidad del condominio,\ny que tenga cobertura contra daños a terceros.\nEl administrador determinará y realizará las gestiones necesarias para la\ncontratación del seguro, con alguna compañía legalmente autorizada para ello,\nsiempre y cuando se ajuste a lo establecido en esta ley y demás disposiciones\naplicables."
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_61",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "IX",
+        "nombre_capitulo": "Controversias",
+        "seccion": null,
+        "nombre_seccion": null,
+        "articulo": 61,
+        "titulo": "Solución de controversias"
+      },
+      "texto_original": "Artículo 61. Solución de controversias\nLas controversias que se susciten entre los condóminos, entre estos y su\nadministrador o entre un condómino o grupo de condóminos con la asamblea se\nsolucionarán en los términos de la legislación y normatividad aplicable en materia\nde mecanismos alternativos de solución de controversias.\nEn los casos en que no fuere posible aplicar los mecanismos alternativos de\nsolución de controversias, se procederá ante las instancias jurisdiccionales y\nadministrativas competentes."
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_62",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "IX",
+        "nombre_capitulo": "Controversias",
+        "seccion": null,
+        "nombre_seccion": null,
+        "articulo": 62,
+        "titulo": "Impugnación de los acuerdos"
+      },
+      "texto_original": "Artículo 62. Impugnación de los acuerdos\nLos condóminos podrán impugnar, en un plazo de treinta días naturales, contados\na partir de la fecha de la notificación del acta de la sesión, los acuerdos de la\nasamblea cuando sean contrarios a las leyes, al acta constitutiva o a los estatutos;\nimpliquen un abuso de derecho; o sean contrarios a los intereses de la comunidad.\nSolo estarán legitimados para impugnar, los que hayan votado en contra del\nacuerdo, los ausentes y quienes fueron privados ilegítimamente de su derecho a\nvotar.\nLos acuerdos contrarios a las leyes podrán ser impugnados por cualquier\ncondómino, incluso si dieron su aprobación en la sesión."
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_63",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "X",
+        "nombre_capitulo": "Subcondominios",
+        "seccion": null,
+        "nombre_seccion": null,
+        "articulo": 63,
+        "titulo": "Subcondominios"
+      },
+      "texto_original": "Artículo 63. Subcondominios\nLos subcondominios serán regulados por este capítulo y por las disposiciones que\nesta ley establece para los condominios en general, siempre que, por su\nnaturaleza, resulten aplicables."
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_64",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "X",
+        "nombre_capitulo": "Subcondominios",
+        "seccion": null,
+        "nombre_seccion": null,
+        "articulo": 64,
+        "titulo": "Constitución"
+      },
+      "texto_original": "Artículo 64. Constitución\nLos subcondominios pueden constituirse desde el momento en que se realice el\nacta constitutiva, o posteriormente, por acuerdo de la asamblea."
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_65",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "X",
+        "nombre_capitulo": "Subcondominios",
+        "seccion": null,
+        "nombre_seccion": null,
+        "articulo": 65,
+        "titulo": "Regulación interna"
+      },
+      "texto_original": "Artículo 65. Regulación interna\nLos subcondominios podrán establecer cuotas particulares que deberán ser\ncubiertas por los condóminos con independencia de las cuotas de administración\ngenerales que se determine para el condominio del cual forman parte.\nCada subcondominio podrá tener sus órganos específicos, estatutos, reglamentos\ninteriores y adoptar los acuerdos que les competan, siempre que estos no\nimpliquen una carga o perjuicio económico, social o estético al condominio del cual\nforme parte, o a sus condóminos, en cuyo caso, deberán ser autorizados\npreviamente por la asamblea del condominio.\nLos estatutos del condominio podrán crear órganos integrados a su vez con las\npersonas que ocupen determinados cargos de los diversos subcondominios para\nfacilitar la administración y gestión del condominio."
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_66",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "XI",
+        "nombre_capitulo": "Destrucción, ruina y reconstrucción del edificio",
+        "seccion": null,
+        "nombre_seccion": null,
+        "articulo": 66,
+        "titulo": "Estado de ruina o destrucción del condominio"
+      },
+      "texto_original": "Artículo 66. Estado de ruina o destrucción del condominio\nSi el inmueble sujeto al régimen de propiedad en condominio estuviera en estado\nruinoso o se destruyera total o parcialmente, la asamblea podrá acordar, con el\nvoto de los condóminos cuyas cuotas de participación representen, al menos, el\n75% del valor total del condominio, la reconstrucción de las áreas y bienes de uso\ncomún."
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_67",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "XI",
+        "nombre_capitulo": "Destrucción, ruina y reconstrucción del edificio",
+        "seccion": null,
+        "nombre_seccion": null,
+        "articulo": 67,
+        "titulo": "Reconstrucción del condominio"
+      },
+      "texto_original": "Artículo 67. Reconstrucción del condominio\nCuando se haya acordado la reconstrucción del condominio, cada condómino\nestará obligado a pagar la reparación de su unidad de propiedad exclusiva, así\ncomo la parte proporcional que le corresponda a las áreas y bienes de uso común,\nsegún la cuota de participación establecida en el acta constitutiva."
+    },
+    {
+      "id_vector": "YUC_CONDO_ART_68",
+      "meta": {
+        "ley": "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán",
+        "capitulo": "XI",
+        "nombre_capitulo": "Destrucción, ruina y reconstrucción del edificio",
+        "seccion": null,
+        "nombre_seccion": null,
+        "articulo": 68,
+        "titulo": "Obligación de cumplir con la reconstrucción del condominio"
+      },
+      "texto_original": "Artículo 68. Obligación de cumplir con la reconstrucción del condominio\nLos condóminos que se nieguen a llevar a cabo la reconstrucción señalada en el\nartículo anterior deberán enajenar sus derechos de propiedad exclusiva\nrespetando el derecho del tanto, en un plazo que no exceda de seis meses y al\nvalor del avalúo practicado por persona autorizada por la ley."
+    }
+  ]
+}

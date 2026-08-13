@@ -1,0 +1,32 @@
+{
+  "name": "leger-consultor",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "corpus:sync": ".venv/bin/python scripts/sync_corpus.py"
+  },
+  "dependencies": {
+    "@ai-sdk/anthropic": "^4.0.38",
+    "@ai-sdk/react": "^3",
+    "ai": "^7.0.59",
+    "next": "16.3.0",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "streamdown": "^2.5.0",
+    "zod": "^4"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.3.0",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}

@@ -1,0 +1,163 @@
+{
+  "documento": "Catálogo de Patrones de Riesgo — Método LEGER",
+  "version": "1.1",
+  "fecha": "2026-08-13",
+  "cambios_desde_v1.0": [
+    "Cada patrón se reformula de 'descripción de abuso' a PREGUNTA DE VERIFICACIÓN NEUTRAL que admite 'cumple' como respuesta legítima (blindaje anti-complacencia por diseño).",
+    "El estándar de verificación sube de 'cumple la ley' a 'cumple la buena gobernanza' — porque la ley a veces permite el traslado de riesgo por sus opciones potestativas y huecos. La ley es el piso; la gobernanza es el estándar.",
+    "Se define la pregunta de entrada del modo auditoría.",
+    "Se añade regla de mostrar el razonamiento ley+principio a la vista (un juicio de gobernanza es más interpretativo que un dato de ley: exige transparencia del porqué)."
+  ],
+  "naturaleza": "ABSTRACTO Y UNIVERSAL. Cada entrada describe una FORMA de traslado de riesgo (un patrón) y la PREGUNTA con que se verifica, no una cláusula concreta de un condominio. Aplica a cualquier condominio de Yucatán. Los casos concretos (actas reales, artículos numerados) viven en el expediente de cada condominio, por separado.",
+  "principio_rector": "Equalizador de gobernanza. Sin bando entre condómino y desarrollador. Se verifica el CUMPLIMIENTO DE LA BUENA GOBERNANZA (que incluye la ley pero va más allá: cómo se reparte el riesgo entre las partes). Un patrón sólo se 'activa' si las pruebas del caso lo sostienen; si la cláusula respeta la gobernanza, LEGER lo declara. LEGER nivela el conocimiento técnico; NO fabrica la conclusión.",
+
+  "modo_auditoria": {
+    "cuando_se_activa": "Cuando el usuario sube un documento Y consiente explícitamente. NO se audita automáticamente. Recomendación de implementación: la activación debe vivir en el CÓDIGO (si hay adjunto → ofrecer auditoría), no sólo en el prompt, para que sea determinística.",
+    "pregunta_de_entrada": "¿Quieres que verifique si este documento cumple con la buena gobernanza — revisando la ley y también cómo reparte el riesgo entre las partes, diciéndote dónde cumple y dónde se aparta, si es que se aparta?",
+    "por_que_esta_formulacion": [
+      "'Verificar cumplimiento' (no 'encontrar abuso') = neutral: admite 'cumple' como resultado legítimo.",
+      "'Buena gobernanza' (no sólo 'la ley') = detecta el sesgo que la ley permite; la ley es el piso, la gobernanza el estándar.",
+      "'dónde cumple y dónde se aparta, si es que se aparta' = declara en voz alta que el resultado podría ser 'no se aparta en nada'. Vacuna contra la complacencia.",
+      "Requiere consentimiento: procesar el documento sólo tras el 'sí' del usuario."
+    ],
+    "estandar": "Ley = piso (necesario pero no suficiente). Gobernanza sana = estándar (proporcionalidad del riesgo, protección del patrimonio común, transparencia, rendición de cuentas). Una cláusula puede ser LEGAL y aun así mala gobernanza.",
+    "regla_de_transparencia": "Como un juicio de gobernanza es más interpretativo que un dato de ley, cada hallazgo DEBE mostrar su razonamiento: 'cumple la ley, pero se aparta de la buena gobernanza PORQUE [principio] — mira: [la regla legal] frente a [lo que hace la cláusula]'. El razonamiento a la vista hace verificable el juicio, igual que la cita hace verificable el dato."
+  },
+
+  "reglas_de_honestidad": [
+    "Verificar cumplimiento, no buscar abuso. La pregunta de cada patrón admite 'sí cumple' como respuesta válida.",
+    "Toda cláusula analizada se muestra textual al usuario y se confirma su lectura (por si el OCR/escaneo falló) antes de argumentar.",
+    "El dato viene del documento REAL del usuario; el patrón sólo guía qué verificar. El patrón nunca aporta el texto de la cláusula.",
+    "Distinguir dentro de una cláusula la condición defendible de la indefendible (los 'o' y las comas donde se esconde el traslado de riesgo).",
+    "Si el hecho verificable no sostiene el apartamiento, declararlo: 'esta cláusula es dura pero cumple; no la pelees, perderías'.",
+    "Anclajes de ley: verificar contra el corpus legal oficial vigente antes de afirmar número de artículo/fracción.",
+    "Origen industrial: estos patrones suelen venir de machotes reutilizados de abogados/notarios/actuarios. 'Práctica común' NO valida un patrón, pero explica por qué se repite entre condominios.",
+    "El dictamen final de impugnabilidad corresponde a un especialista; LEGER ilumina y prepara para la asamblea."
+  ],
+
+  "patrones": [
+    {
+      "id": "P01_PROPORCIONALIDAD_CARGAS",
+      "nombre": "Proporcionalidad de cargas al copropietario mayoritario",
+      "pregunta_de_verificacion": "¿La cláusula reparte las cargas de mantenimiento en proporción al indiviso de cada quien, como manda la ley —incluido el desarrollador por sus unidades—, o exime/reduce la carga del mayoritario? Si lo exime, ¿sobre obra genuinamente no concluida (defendible) o también sobre unidades terminadas y no vendidas que sí generan gasto (se aparta)?",
+      "que_cumpliria_la_gobernanza": "Que todos los copropietarios, incluido el desarrollador, contribuyan proporcionalmente a su indiviso sobre la obra concluida que genera gasto real (servicios devengados). La ley obliga a pagar se use o no la unidad.",
+      "principio_de_gobernanza": "El riesgo y el costo del patrimonio común se reparten en proporción a la participación de cada dueño. Quien más tiene, más aporta. Eximir al mayoritario traslada su carga a la minoría.",
+      "forma_del_apartamiento": "Cláusula que libera al desarrollador de la cuota mientras (a) tenga obra pendiente o (b) no haya vendido. El conector 'o' une un supuesto defendible (obra inconclusa = no genera gasto) con uno indefendible (terminada no vendida = sí genera gasto y recibe servicios).",
+      "sub_verificaciones": [
+        {
+          "verificar": "¿Qué % de la obra está concluido y en operación? Sobre lo concluido no hay fundamento para eximir; se reparte por indiviso.",
+          "refuerzo": "La Ley de Desarrollos Inmobiliarios presupone obra concluida y habitabilidad antes de la primera compraventa. Si ya se vende, la obra debía estar concluida; en la práctica suele quedar sólo 'no vendidas', el supuesto indefendible."
+        },
+        {
+          "verificar": "¿La obligación del desarrollador es su cuota proporcional determinada (presupuesto × participación), o sólo 'cubrir el déficit' en dinero o en especie a su libre elección? Lo segundo sustituye una obligación clara y auditable por una residual y discrecional."
+        }
+      ],
+      "prueba_que_se_pide": ["Texto de la cláusula en el acta/reglamento del usuario.", "Estado real de la obra (verificable físicamente).", "Presupuesto y estados de cuenta: ¿separan obra concluida de pendiente?"],
+      "contraargumento_anticipado": {
+        "que_dira_el_otro_lado": "'No estoy exento: cubro el déficit.' Y: 'El acta es un contrato que usted firmó; lo pactado obliga, no la ley general.'",
+        "respuesta": "Cubrir un déficit residual en especie a libre elección no equivale a la cuota proporcional determinada que manda la ley: sustituyó la obligación, no la cumplió. Y 'es un contrato': el consentimiento a un contrato de adhesión (machote redactado por el desarrollador cuando era único propietario, no negociado) es débil; los estatutos no pueden contravenir disposiciones imperativas de la ley, y la proporcionalidad de cargas es estructural al régimen."
+      },
+      "resultado_si_cumple": "Si la exención recae sólo sobre obra genuinamente no concluida que no genera gasto, y el desarrollador aporta proporcionalmente sobre lo concluido, la cláusula CUMPLE. Declararlo así.",
+      "via": "Asamblea (revisión del presupuesto / evaluación de la administración); impugnación de acuerdos contrarios a la ley o estatutos dentro del plazo del acta; dictamen por especialista.",
+      "ancla_ley_por_verificar": "Copropiedad proporcional al indiviso; definición de cuota de participación; obligación de cubrir cuotas conforme a presupuesto. Verificar numeración en corpus legal."
+    },
+    {
+      "id": "P02_FONDO_RESERVA",
+      "nombre": "Aportación al fondo de reserva del mayoritario",
+      "pregunta_de_verificacion": "¿El desarrollador aporta al fondo común de reserva por sus unidades no vendidas en igualdad de condiciones con los demás condóminos, o queda eximido / aporta de forma sólo residual, limitada o reembolsable?",
+      "que_cumpliria_la_gobernanza": "Que todos aporten al fondo de reserva de forma proporcional y definitiva, sin privilegios en la forma de la obligación.",
+      "principio_de_gobernanza": "El fondo de reserva es una carga común proporcional; el mayoritario debería ser el mayor aportante, no el eximido.",
+      "forma_del_apartamiento": "Exención de aportar mientras no venda; y si el fondo (aportado por los demás) se agota, sólo entonces aporta, hasta un límite, con derecho a devolución — casi un préstamo, no una contribución.",
+      "prueba_que_se_pide": ["Texto de la cláusula.", "Estados de cuenta del fondo: quién aportó y en qué condición."],
+      "contraargumento_anticipado": {
+        "que_dira_el_otro_lado": "'No estoy exento del todo: si el fondo se agota, aporto.'",
+        "respuesta": "Una aportación residual, limitada y reembolsable no equivale a la contribución definitiva y proporcional de los demás. La forma de la obligación es desigual."
+      },
+      "resultado_si_cumple": "Si el desarrollador aporta al fondo en igualdad de forma y proporción, CUMPLE. Declararlo.",
+      "via": "Asamblea; revisión del fondo; especialista."
+    },
+    {
+      "id": "P03_VOTO_Y_PAGO",
+      "nombre": "Coherencia entre exención de pago y derecho a voto",
+      "pregunta_de_verificacion": "Si el desarrollador está exento de pagar cuota por sus unidades no vendidas, ¿ejerce el voto de esas unidades en asamblea? Y si lo ejerce, ¿la propia acta condiciona el derecho a voto a estar al corriente en el pago? Si ambas cosas ocurren, hay una contradicción interna del contrato.",
+      "que_cumpliria_la_gobernanza": "Coherencia interna: o el desarrollador contribuye y vota, o no contribuye y no vota. No tomar el beneficio (voto) rechazando la carga (pago) de las mismas unidades.",
+      "principio_de_gobernanza": "El poder de decisión sobre el patrimonio común debe corresponder a quien también asume su carga. Decidir sin contribuir desequilibra la gobernanza.",
+      "forma_del_apartamiento": "Cláusula de exención de pago + regla de voto que exige estar al corriente, ejercidas simultáneamente por el desarrollador. Es el apartamiento MÁS fuerte de exponer porque enfrenta una cláusula del acta contra otra cláusula del acta — no la ley general contra el desarrollador.",
+      "prueba_que_se_pide": ["La cláusula de exención + la regla de voto del acta, enfrentadas.", "Actas de asamblea donde conste que el representante de las unidades no vendidas votó."],
+      "contraargumento_anticipado": {
+        "que_dira_el_otro_lado": "'El acta es un contrato que obliga; tengo derecho a votar por mi copropiedad.'",
+        "respuesta": "Precisamente porque el acta obliga, obliga también su regla de voto: sin estar al corriente en el pago, no hay derecho a voto. El mismo contrato que invoca lo descalifica."
+      },
+      "resultado_si_cumple": "Si el desarrollador está al corriente (paga), o si el acta NO condiciona el voto al pago, no hay contradicción y CUMPLE. Declararlo.",
+      "via": "Impugnación de acuerdos (plazo del acta, típicamente ~30 días); asamblea; especialista.",
+      "matiz_critico": "La suspensión de voto al no corriente es POTESTATIVA en la ley ('los estatutos podrán'). VERIFICAR SIEMPRE que el acta concreta contenga esa regla antes de sostener la contradicción. Si el acta no la contiene, el patrón no aplica."
+    },
+    {
+      "id": "P04_AC_ADMINISTRADORA",
+      "nombre": "Naturaleza y nombramiento de la administración (AC)",
+      "pregunta_de_verificacion": "¿Quién administra el condominio y cómo fue nombrado? ¿Es una AC constituida por el desarrollador? ¿Sus estatutos son propios o replican la Ley de Régimen? ¿El nombramiento como administradora se logró con el voto del propio desarrollador? ¿Existe conflicto de interés (el desarrollador administrando a través de su propia AC = autocontrato)?",
+      "que_cumpliria_la_gobernanza": "Una administración nombrada por la asamblea en condiciones libres de conflicto de interés, distinguible del régimen, y sujeta a evaluación y remoción por los condóminos.",
+      "principio_de_gobernanza": "Quien ejecuta (administración) debe ser controlable por quien gobierna (asamblea) y no confundirse con ella. El conflicto de interés (autocontrato) vicia esa relación.",
+      "forma_del_apartamiento": "AC constituida antes del régimen, con estatutos clonados de la ley (el condómino cree que la AC ES el régimen), autonombrada administradora con el voto del desarrollador. Camuflaje + conflicto de interés.",
+      "prueba_que_se_pide": ["Acta constitutiva de la AC (fecha, socios).", "Estatutos de la AC (comparar con la ley).", "Acta de asamblea del nombramiento (con qué votos)."],
+      "contraargumento_anticipado": {
+        "que_dira_el_otro_lado": "'La ley permite que el desarrollador nombre al primer administrador.'",
+        "respuesta": "Designar al primer administrador es una cosa; perpetuarse vía una AC propia con estatutos que camuflan a la comunidad y un nombramiento logrado con voto propio es otra. Es autocontrato con conflicto de interés, sujeto a la facultad de la asamblea de remover libremente al administrador."
+      },
+      "resultado_si_cumple": "Si la administración fue nombrada por la asamblea sin conflicto, es distinguible del régimen y es removible, CUMPLE. Declararlo.",
+      "via": "Asamblea (evaluación y remoción con debido proceso); especialista.",
+      "estado": "por_desarrollar_con_casos"
+    },
+    {
+      "id": "P05_BASE_CONTABLE",
+      "nombre": "Base de cálculo contable del régimen",
+      "pregunta_de_verificacion": "¿El presupuesto y los ingresos se calculan sobre el 100% del indiviso del régimen, o sólo sobre una fracción (p. ej. las unidades vendidas/ocupadas)? Si se recorta la base excluyendo las unidades del desarrollador, ¿desaparece contablemente el 'déficit' que activaría su obligación?",
+      "que_cumpliria_la_gobernanza": "Contabilidad y presupuesto sobre el 100% del régimen, transparentes, que permitan ver la aportación (o el hueco) de cada copropietario, incluido el desarrollador.",
+      "principio_de_gobernanza": "El régimen es el 100% del indiviso; la contabilidad debe reflejar el total para ser transparente y para que la obligación de cada dueño sea evaluable.",
+      "forma_del_apartamiento": "Calcular sobre unidades vendidas y no sobre el total. Al excluir las del desarrollador, el déficit nunca aparece por diseño, y su obligación de 'cubrir déficit' nunca se activa.",
+      "prueba_que_se_pide": ["Presupuesto y estados de cuenta: base de cálculo (número de unidades).", "Comparar unidades totales del régimen vs. consideradas en la contabilidad."],
+      "contraargumento_anticipado": {
+        "que_dira_el_otro_lado": "'Sólo cobramos a quienes deben pagar.'",
+        "respuesta": "El presupuesto del régimen debe reflejar el 100% del indiviso para ser transparente y para evaluar la obligación del desarrollador. Recortar la base oculta el hueco y desactiva su obligación."
+      },
+      "resultado_si_cumple": "Si la contabilidad refleja el 100% del régimen de forma transparente, CUMPLE. Declararlo.",
+      "via": "Comité de vigilancia (dictamen de estados de cuenta); asamblea; especialista.",
+      "estado": "por_desarrollar_con_casos"
+    },
+    {
+      "id": "P06_ADMINISTRADOR_DE_HECHO",
+      "nombre": "Correspondencia entre quien administra de hecho y quien responde de derecho",
+      "pregunta_de_verificacion": "¿Quién ejerce de hecho las funciones de administración y cobra por ellas, y quién figura como administrador de derecho en el acta? ¿Coinciden? Cuando se pide rendición de cuentas, ¿quién responde — y quien opera se declara 'sólo proveedor' para evadir la obligación?",
+      "que_cumpliria_la_gobernanza": "Que quien administra de hecho responda como administrador, y que la rendición de cuentas sea accesible y efectiva.",
+      "principio_de_gobernanza": "Primacía de la realidad: quien ejerce de hecho funciones de administrador responde como tal. La rendición de cuentas no se evade interponiendo figuras.",
+      "forma_del_apartamiento": "Desdoblamiento en dos figuras: la responsabilidad en una (AC inaccesible) y las funciones en otra (proveedor que se declara irresponsable). El condómino corre entre ambas y se agota; remover al proveedor no toca al administrador real.",
+      "prueba_que_se_pide": ["Contrato/recibos del proveedor.", "Acta que nombra administrador (la AC).", "Peticiones por escrito y respuestas evasivas."],
+      "contraargumento_anticipado": {
+        "que_dira_el_otro_lado": "'Yo sólo soy un proveedor; su petición a mí no vale.'",
+        "respuesta": "Dirigir la exigencia por escrito y con acuse a la AC (administrador de derecho); su silencio construye evidencia de incumplimiento. Y si el proveedor ejerce de hecho funciones de administración, responde como administrador de hecho por primacía de la realidad."
+      },
+      "resultado_si_cumple": "Si quien administra de hecho es el administrador de derecho y rinde cuentas accesiblemente, CUMPLE. Declararlo.",
+      "via": "Exigencia escrita con acuse a la AC; comité de vigilancia; asamblea (remoción con causa por el silencio); especialista.",
+      "estado": "por_desarrollar_con_casos"
+    }
+  ],
+
+  "arquitectura_de_riesgos": {
+    "descripcion": "Los patrones no suelen aparecer sueltos: se combinan en un edificio donde cada capa protege a la anterior. LEGER guía el descubrimiento capa por capa con preguntas de verificación — NO presupone que el edificio completo exista en todo condominio.",
+    "secuencia_tipica_de_verificacion": [
+      "P01/P02: ¿se reparten proporcionalmente las cargas y el fondo? (blindaje: la exención vive en el acta registral, difícil de modificar).",
+      "P03: ¿es coherente el voto con el pago? (desarma el control por mayoría del desarrollador).",
+      "P04: ¿la administración está libre de conflicto y es distinguible del régimen?",
+      "P05: ¿la contabilidad refleja el 100% del régimen?",
+      "P06: ¿quien administra de hecho responde de derecho?"
+    ],
+    "advertencia_central": "Se verifica el cumplimiento de la gobernanza, no se busca el complot. El edificio revela lo que las pruebas sostienen, no lo que la sospecha supone. Cada capa se confirma o se DESCARTA según las pruebas. Afirmar el complot sin pruebas hace perder al usuario y quema la credibilidad de LEGER; verificar con pruebas lo empodera y sirve por igual al condómino y al desarrollador honesto."
+  },
+
+  "pendientes": [
+    "Anclar cada 'principio' y cada verificación al artículo exacto del corpus legal oficial vigente.",
+    "Desarrollar P04, P05, P06 con más detalle a partir de casos analizados.",
+    "Agregar patrones nuevos conforme se analicen más cláusulas (versiones sucesivas).",
+    "Implementar la activación del modo auditoría en CÓDIGO (disparo por adjunto + consentimiento), no sólo en el prompt."
+  ]
+}

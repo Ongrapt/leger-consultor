@@ -1,0 +1,228 @@
+@import "tailwindcss";
+@source "../../node_modules/streamdown/dist/*.js";
+
+:root {
+  --background: #ffffff;
+  --foreground: #1a1a1a;
+  --surface: #f7f7f8;
+  --border: #e5e5e5;
+  --card: var(--surface);
+  --card-foreground: var(--foreground);
+  --muted: var(--surface);
+  --muted-foreground: #6b6b6b;
+  --input: var(--border);
+  --primary: var(--foreground);
+  --primary-foreground: var(--background);
+  --radius: 0.625rem;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-border: var(--border);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-input: var(--input);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+  --font-sans: var(--font-inter);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #212121;
+    --foreground: #ececec;
+    --surface: #2f2f2f;
+    --border: #3d3d3d;
+    --muted-foreground: #a3a3a3;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+/* --- VFX: Fondo de Patrón de Reloj (Watch Pattern Background) --- */
+:root {
+  --vfx-bg-base: #080a0c;
+  --vfx-dot-pattern: rgba(255, 255, 255, 0.03);
+
+  --vfx-accent-coral-base: #aa3333;
+  --vfx-accent-cyan-base: #33aaaa;
+
+  --vfx-glow-radius: 60%;
+  --vfx-dot-pattern-size: 10px;
+}
+
+.ui-vfx-watch-bg {
+  --vfx-active-accent: var(--vfx-accent-coral-base);
+
+  position: relative;
+  background-color: var(--vfx-bg-base);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.ui-vfx-watch-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+    var(--vfx-dot-pattern) 1px,
+    transparent 1px
+  );
+  background-size: var(--vfx-dot-pattern-size) var(--vfx-dot-pattern-size);
+  pointer-events: none;
+  z-index: -3;
+}
+
+.ui-vfx-watch-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+      circle at center,
+      var(--vfx-active-accent) 0%,
+      transparent var(--vfx-glow-radius)
+    ),
+    radial-gradient(circle at center, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-blend-mode: color-dodge;
+  opacity: 0.25;
+  pointer-events: none;
+  z-index: -2;
+  transition: background 0.3s ease, opacity 0.3s ease;
+}
+
+/* Pasillo oscuro central: garantiza contraste para el texto del chat
+   sin importar qué tan intenso sea el patrón detrás. */
+.ui-vfx-watch-bg .vfx-content-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    transparent calc(50% - 420px),
+    rgba(8, 10, 12, 0.82) calc(50% - 320px),
+    rgba(8, 10, 12, 0.9) 50%,
+    rgba(8, 10, 12, 0.82) calc(50% + 320px),
+    transparent calc(50% + 420px),
+    transparent 100%
+  );
+}
+
+.ui-vfx-watch-bg.coral {
+  --vfx-active-accent: var(--vfx-accent-coral-base);
+}
+
+.ui-vfx-watch-bg.cyan {
+  --vfx-active-accent: var(--vfx-accent-cyan-base);
+}
+
+/* Estilo "vórtice": anillos de puntos concéntricos, tipo esfera de reloj */
+.ui-vfx-watch-bg.vortex::before {
+  content: none;
+}
+
+.ui-vfx-watch-bg.vortex::after {
+  background: var(--vfx-vortex-image) center / min(100vw, 100vh) no-repeat;
+  background-blend-mode: normal;
+  opacity: 0.45;
+}
+
+.ui-vfx-watch-bg.vortex.coral {
+  --vfx-vortex-image: url("/vfx/vortex-coral.svg");
+}
+
+.ui-vfx-watch-bg.vortex.cyan {
+  --vfx-vortex-image: url("/vfx/vortex-cyan.svg");
+}
+
+.ui-vfx-watch-bg main {
+  scrollbar-width: none;
+}
+
+.ui-vfx-watch-bg main::-webkit-scrollbar {
+  display: none;
+}
+
+.vfx-theme-controls {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 10;
+}
+
+.vfx-style-toggle {
+  display: flex;
+  gap: 2px;
+  padding: 2px;
+  border-radius: 999px;
+  background-color: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.vfx-style-toggle button {
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.7rem;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.vfx-style-toggle button:hover {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.vfx-style-toggle button.active {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: white;
+}
+
+.vfx-color-toggle {
+  display: flex;
+  gap: 10px;
+}
+
+.vfx-color-toggle .theme-btn {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.2s, box-shadow 0.2s;
+  background-clip: padding-box;
+}
+
+.vfx-color-toggle .theme-btn:hover {
+  transform: scale(1.1);
+}
+
+.vfx-color-toggle .theme-btn.active {
+  border-color: white;
+  box-shadow: 0 0 10px white;
+}
+
+.vfx-color-toggle .theme-btn.coral-theme {
+  background-color: var(--vfx-accent-coral-base);
+}
+
+.vfx-color-toggle .theme-btn.cyan-theme {
+  background-color: var(--vfx-accent-cyan-base);
+}
