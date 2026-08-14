@@ -1,24 +1,70 @@
 "use client";
 
 import { useChat } from "@ai-sdk/react";
+import { DefaultChatTransport, type FileUIPart, type UIMessage } from "ai";
+import { upload } from "@vercel/blob/client";
 import { useRef, useState } from "react";
 import { Streamdown } from "streamdown";
 import "streamdown/styles.css";
 import WatchBackground from "@/components/WatchBackground";
+import { pathnameParaDocumento, urlProxyDeArchivo } from "@/lib/blob";
 
-export default function ChatInterface() {
-  const { messages, sendMessage, status } = useChat();
+export default function DocumentChat({
+  documentId,
+  initialMessages,
+}: {
+  documentId: string;
+  initialMessages: UIMessage[];
+}) {
+  const { messages, sendMessage, status } = useChat({
+    id: documentId,
+    messages: initialMessages,
+    transport: new DefaultChatTransport({
+      api: "/api/chat",
+      body: { documentId },
+    }),
+  });
   const [input, setInput] = useState("");
   const [archivos, setArchivos] = useState<FileList | null>(null);
+  const [subiendo, setSubiendo] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const isBusy = status === "submitted" || status === "streaming";
+  const isBusy = status === "submitted" || status === "streaming" || subiendo;
   const hayArchivos = !!archivos && archivos.length > 0;
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if ((!input.trim() && !hayArchivos) || isBusy) return;
-    sendMessage({ text: input, files: archivos ?? undefined });
+
+    let fileParts: FileUIPart[] | undefined;
+    if (hayArchivos) {
+      setSubiendo(true);
+      try {
+        fileParts = await Promise.all(
+          Array.from(archivos!).map(async (file) => {
+            const resultado = await upload(
+              pathnameParaDocumento(documentId, file.name),
+              file,
+              {
+                access: "private",
+                handleUploadUrl: "/api/upload",
+                clientPayload: JSON.stringify({ documentId }),
+              },
+            );
+            return {
+              type: "file",
+              url: urlProxyDeArchivo(resultado.pathname),
+              mediaType: resultado.contentType,
+              filename: file.name,
+            } satisfies FileUIPart;
+          }),
+        );
+      } finally {
+        setSubiendo(false);
+      }
+    }
+
+    sendMessage({ text: input, files: fileParts });
     setInput("");
     setArchivos(null);
     if (fileInputRef.current) fileInputRef.current.value = "";
@@ -26,10 +72,6 @@ export default function ChatInterface() {
 
   return (
     <WatchBackground className="flex h-dvh flex-col items-center">
-      <header className="w-full max-w-3xl px-4 pt-6 pb-2 text-center">
-        <h1 className="text-lg font-medium text-foreground/90">Leger</h1>
-      </header>
-
       <main className="flex w-full max-w-3xl flex-1 flex-col overflow-y-auto px-4">
         {messages.length === 0 ? (
           <div className="flex flex-1 flex-col items-center justify-center gap-2 text-center">
@@ -84,9 +126,14 @@ export default function ChatInterface() {
                               className="max-h-48 rounded-lg border border-border"
                             />
                           ) : (
-                            <span className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-background/50 px-2.5 py-1 text-xs text-foreground/70">
+                            <a
+                              href={part.url}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-background/50 px-2.5 py-1 text-xs text-foreground/70 hover:text-foreground"
+                            >
                               📄 {part.filename ?? "Documento adjunto"}
-                            </span>
+                            </a>
                           )}
                         </div>
                       );
