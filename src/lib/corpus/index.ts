@@ -152,3 +152,12 @@ export function formatearBloqueCorpus(articulos: Articulo[]): string {
 export function totalArticulos(): number {
   return ARTICULOS.length;
 }
+
+/**
+ * Devuelve todos los artículos del corpus, sin filtrar por relevancia.
+ * Se usa en modo auditoría: el documento adjunto puede citar cualquier
+ * artículo y la búsqueda por palabras clave del chat no lo cubre.
+ */
+export function todosLosArticulos(): Articulo[] {
+  return ARTICULOS;
+}

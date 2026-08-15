@@ -5,6 +5,7 @@ import type { UIMessage } from "ai";
 import DocumentChat from "@/components/DocumentChat";
 import { getDb } from "@/lib/db";
 import { documents, messages as messagesTable } from "@/lib/db/schema";
+import { obtenerUso } from "@/lib/usage";
 
 export default async function DocumentoPage(
   props: PageProps<"/documentos/[id]">,
@@ -37,5 +38,9 @@ export default async function DocumentoPage(
     parts: fila.parts,
   }));
 
-  return <DocumentChat documentId={id} initialMessages={initialMessages} />;
+  const uso = await obtenerUso(userId);
+
+  return (
+    <DocumentChat documentId={id} initialMessages={initialMessages} uso={uso} />
+  );
 }

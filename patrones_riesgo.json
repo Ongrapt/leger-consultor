@@ -1,6 +1,6 @@
 {
   "documento": "Catálogo de Patrones de Riesgo — Método LEGER",
-  "version": "1.1",
+  "version": "1.2",
   "fecha": "2026-08-13",
   "cambios_desde_v1.0": [
     "Cada patrón se reformula de 'descripción de abuso' a PREGUNTA DE VERIFICACIÓN NEUTRAL que admite 'cumple' como respuesta legítima (blindaje anti-complacencia por diseño).",
@@ -10,7 +10,6 @@
   ],
   "naturaleza": "ABSTRACTO Y UNIVERSAL. Cada entrada describe una FORMA de traslado de riesgo (un patrón) y la PREGUNTA con que se verifica, no una cláusula concreta de un condominio. Aplica a cualquier condominio de Yucatán. Los casos concretos (actas reales, artículos numerados) viven en el expediente de cada condominio, por separado.",
   "principio_rector": "Equalizador de gobernanza. Sin bando entre condómino y desarrollador. Se verifica el CUMPLIMIENTO DE LA BUENA GOBERNANZA (que incluye la ley pero va más allá: cómo se reparte el riesgo entre las partes). Un patrón sólo se 'activa' si las pruebas del caso lo sostienen; si la cláusula respeta la gobernanza, LEGER lo declara. LEGER nivela el conocimiento técnico; NO fabrica la conclusión.",
-
   "modo_auditoria": {
     "cuando_se_activa": "Cuando el usuario sube un documento Y consiente explícitamente. NO se audita automáticamente. Recomendación de implementación: la activación debe vivir en el CÓDIGO (si hay adjunto → ofrecer auditoría), no sólo en el prompt, para que sea determinística.",
     "pregunta_de_entrada": "¿Quieres que verifique si este documento cumple con la buena gobernanza — revisando la ley y también cómo reparte el riesgo entre las partes, diciéndote dónde cumple y dónde se aparta, si es que se aparta?",
@@ -23,7 +22,6 @@
     "estandar": "Ley = piso (necesario pero no suficiente). Gobernanza sana = estándar (proporcionalidad del riesgo, protección del patrimonio común, transparencia, rendición de cuentas). Una cláusula puede ser LEGAL y aun así mala gobernanza.",
     "regla_de_transparencia": "Como un juicio de gobernanza es más interpretativo que un dato de ley, cada hallazgo DEBE mostrar su razonamiento: 'cumple la ley, pero se aparta de la buena gobernanza PORQUE [principio] — mira: [la regla legal] frente a [lo que hace la cláusula]'. El razonamiento a la vista hace verificable el juicio, igual que la cita hace verificable el dato."
   },
-
   "reglas_de_honestidad": [
     "Verificar cumplimiento, no buscar abuso. La pregunta de cada patrón admite 'sí cumple' como respuesta válida.",
     "Toda cláusula analizada se muestra textual al usuario y se confirma su lectura (por si el OCR/escaneo falló) antes de argumentar.",
@@ -34,7 +32,6 @@
     "Origen industrial: estos patrones suelen venir de machotes reutilizados de abogados/notarios/actuarios. 'Práctica común' NO valida un patrón, pero explica por qué se repite entre condominios.",
     "El dictamen final de impugnabilidad corresponde a un especialista; LEGER ilumina y prepara para la asamblea."
   ],
-
   "patrones": [
     {
       "id": "P01_PROPORCIONALIDAD_CARGAS",
@@ -52,7 +49,11 @@
           "verificar": "¿La obligación del desarrollador es su cuota proporcional determinada (presupuesto × participación), o sólo 'cubrir el déficit' en dinero o en especie a su libre elección? Lo segundo sustituye una obligación clara y auditable por una residual y discrecional."
         }
       ],
-      "prueba_que_se_pide": ["Texto de la cláusula en el acta/reglamento del usuario.", "Estado real de la obra (verificable físicamente).", "Presupuesto y estados de cuenta: ¿separan obra concluida de pendiente?"],
+      "prueba_que_se_pide": [
+        "Texto de la cláusula en el acta/reglamento del usuario.",
+        "Estado real de la obra (verificable físicamente).",
+        "Presupuesto y estados de cuenta: ¿separan obra concluida de pendiente?"
+      ],
       "contraargumento_anticipado": {
         "que_dira_el_otro_lado": "'No estoy exento: cubro el déficit.' Y: 'El acta es un contrato que usted firmó; lo pactado obliga, no la ley general.'",
         "respuesta": "Cubrir un déficit residual en especie a libre elección no equivale a la cuota proporcional determinada que manda la ley: sustituyó la obligación, no la cumplió. Y 'es un contrato': el consentimiento a un contrato de adhesión (machote redactado por el desarrollador cuando era único propietario, no negociado) es débil; los estatutos no pueden contravenir disposiciones imperativas de la ley, y la proporcionalidad de cargas es estructural al régimen."
@@ -68,7 +69,10 @@
       "que_cumpliria_la_gobernanza": "Que todos aporten al fondo de reserva de forma proporcional y definitiva, sin privilegios en la forma de la obligación.",
       "principio_de_gobernanza": "El fondo de reserva es una carga común proporcional; el mayoritario debería ser el mayor aportante, no el eximido.",
       "forma_del_apartamiento": "Exención de aportar mientras no venda; y si el fondo (aportado por los demás) se agota, sólo entonces aporta, hasta un límite, con derecho a devolución — casi un préstamo, no una contribución.",
-      "prueba_que_se_pide": ["Texto de la cláusula.", "Estados de cuenta del fondo: quién aportó y en qué condición."],
+      "prueba_que_se_pide": [
+        "Texto de la cláusula.",
+        "Estados de cuenta del fondo: quién aportó y en qué condición."
+      ],
       "contraargumento_anticipado": {
         "que_dira_el_otro_lado": "'No estoy exento del todo: si el fondo se agota, aporto.'",
         "respuesta": "Una aportación residual, limitada y reembolsable no equivale a la contribución definitiva y proporcional de los demás. La forma de la obligación es desigual."
@@ -83,7 +87,10 @@
       "que_cumpliria_la_gobernanza": "Coherencia interna: o el desarrollador contribuye y vota, o no contribuye y no vota. No tomar el beneficio (voto) rechazando la carga (pago) de las mismas unidades.",
       "principio_de_gobernanza": "El poder de decisión sobre el patrimonio común debe corresponder a quien también asume su carga. Decidir sin contribuir desequilibra la gobernanza.",
       "forma_del_apartamiento": "Cláusula de exención de pago + regla de voto que exige estar al corriente, ejercidas simultáneamente por el desarrollador. Es el apartamiento MÁS fuerte de exponer porque enfrenta una cláusula del acta contra otra cláusula del acta — no la ley general contra el desarrollador.",
-      "prueba_que_se_pide": ["La cláusula de exención + la regla de voto del acta, enfrentadas.", "Actas de asamblea donde conste que el representante de las unidades no vendidas votó."],
+      "prueba_que_se_pide": [
+        "La cláusula de exención + la regla de voto del acta, enfrentadas.",
+        "Actas de asamblea donde conste que el representante de las unidades no vendidas votó."
+      ],
       "contraargumento_anticipado": {
         "que_dira_el_otro_lado": "'El acta es un contrato que obliga; tengo derecho a votar por mi copropiedad.'",
         "respuesta": "Precisamente porque el acta obliga, obliga también su regla de voto: sin estar al corriente en el pago, no hay derecho a voto. El mismo contrato que invoca lo descalifica."
@@ -99,7 +106,11 @@
       "que_cumpliria_la_gobernanza": "Una administración nombrada por la asamblea en condiciones libres de conflicto de interés, distinguible del régimen, y sujeta a evaluación y remoción por los condóminos.",
       "principio_de_gobernanza": "Quien ejecuta (administración) debe ser controlable por quien gobierna (asamblea) y no confundirse con ella. El conflicto de interés (autocontrato) vicia esa relación.",
       "forma_del_apartamiento": "AC constituida antes del régimen, con estatutos clonados de la ley (el condómino cree que la AC ES el régimen), autonombrada administradora con el voto del desarrollador. Camuflaje + conflicto de interés.",
-      "prueba_que_se_pide": ["Acta constitutiva de la AC (fecha, socios).", "Estatutos de la AC (comparar con la ley).", "Acta de asamblea del nombramiento (con qué votos)."],
+      "prueba_que_se_pide": [
+        "Acta constitutiva de la AC (fecha, socios).",
+        "Estatutos de la AC (comparar con la ley).",
+        "Acta de asamblea del nombramiento (con qué votos)."
+      ],
       "contraargumento_anticipado": {
         "que_dira_el_otro_lado": "'La ley permite que el desarrollador nombre al primer administrador.'",
         "respuesta": "Designar al primer administrador es una cosa; perpetuarse vía una AC propia con estatutos que camuflan a la comunidad y un nombramiento logrado con voto propio es otra. Es autocontrato con conflicto de interés, sujeto a la facultad de la asamblea de remover libremente al administrador."
@@ -115,7 +126,10 @@
       "que_cumpliria_la_gobernanza": "Contabilidad y presupuesto sobre el 100% del régimen, transparentes, que permitan ver la aportación (o el hueco) de cada copropietario, incluido el desarrollador.",
       "principio_de_gobernanza": "El régimen es el 100% del indiviso; la contabilidad debe reflejar el total para ser transparente y para que la obligación de cada dueño sea evaluable.",
       "forma_del_apartamiento": "Calcular sobre unidades vendidas y no sobre el total. Al excluir las del desarrollador, el déficit nunca aparece por diseño, y su obligación de 'cubrir déficit' nunca se activa.",
-      "prueba_que_se_pide": ["Presupuesto y estados de cuenta: base de cálculo (número de unidades).", "Comparar unidades totales del régimen vs. consideradas en la contabilidad."],
+      "prueba_que_se_pide": [
+        "Presupuesto y estados de cuenta: base de cálculo (número de unidades).",
+        "Comparar unidades totales del régimen vs. consideradas en la contabilidad."
+      ],
       "contraargumento_anticipado": {
         "que_dira_el_otro_lado": "'Sólo cobramos a quienes deben pagar.'",
         "respuesta": "El presupuesto del régimen debe reflejar el 100% del indiviso para ser transparente y para evaluar la obligación del desarrollador. Recortar la base oculta el hueco y desactiva su obligación."
@@ -131,7 +145,11 @@
       "que_cumpliria_la_gobernanza": "Que quien administra de hecho responda como administrador, y que la rendición de cuentas sea accesible y efectiva.",
       "principio_de_gobernanza": "Primacía de la realidad: quien ejerce de hecho funciones de administrador responde como tal. La rendición de cuentas no se evade interponiendo figuras.",
       "forma_del_apartamiento": "Desdoblamiento en dos figuras: la responsabilidad en una (AC inaccesible) y las funciones en otra (proveedor que se declara irresponsable). El condómino corre entre ambas y se agota; remover al proveedor no toca al administrador real.",
-      "prueba_que_se_pide": ["Contrato/recibos del proveedor.", "Acta que nombra administrador (la AC).", "Peticiones por escrito y respuestas evasivas."],
+      "prueba_que_se_pide": [
+        "Contrato/recibos del proveedor.",
+        "Acta que nombra administrador (la AC).",
+        "Peticiones por escrito y respuestas evasivas."
+      ],
       "contraargumento_anticipado": {
         "que_dira_el_otro_lado": "'Yo sólo soy un proveedor; su petición a mí no vale.'",
         "respuesta": "Dirigir la exigencia por escrito y con acuse a la AC (administrador de derecho); su silencio construye evidencia de incumplimiento. Y si el proveedor ejerce de hecho funciones de administración, responde como administrador de hecho por primacía de la realidad."
@@ -139,9 +157,51 @@
       "resultado_si_cumple": "Si quien administra de hecho es el administrador de derecho y rinde cuentas accesiblemente, CUMPLE. Declararlo.",
       "via": "Exigencia escrita con acuse a la AC; comité de vigilancia; asamblea (remoción con causa por el silencio); especialista.",
       "estado": "por_desarrollar_con_casos"
+    },
+    {
+      "id": "P07_ACTOS_ADMINISTRACION",
+      "nombre": "Auditoría de actos de la administración (comunicados, gestiones, avisos)",
+      "naturaleza": "Distinta de los patrones de cláusulas (P01-P06). Un ACTO no se verifica contra la ley como una regla, sino contra cinco filtros de validez del acto administrativo. Es probablemente el patrón MÁS usado en la práctica: los comunicados son el documento que el condómino recibe todo el tiempo y sí tiene a la mano.",
+      "pregunta_de_verificacion": "Este acto o comunicado de la administración, ¿fue emitido por quien tiene facultad, sobre un asunto de su competencia, con contenido que respeta los derechos, con representación válida ante terceros y con el mandato de la asamblea cuando lo requiere? Verificar los cinco filtros; el que falle señala la irregularidad.",
+      "cinco_filtros": [
+        {
+          "filtro": "1. Facultad",
+          "pregunta": "¿Quién emite el documento tiene la calidad para emitir un acto de gobierno? Un proveedor NO puede ser parte actora de un documento de gobierno; la representación legal es del administrador (Art. 42 fr. III).",
+          "ancla": "Art. 42 fracción III (representación legal del administrador) — verificado."
+        },
+        {
+          "filtro": "2. Competencia",
+          "pregunta": "¿El asunto es de áreas comunes (competencia del administrador) o de áreas privativas (NO le compete)? La competencia se limita a lo común; lo privativo (p. ej. consumo de agua de cada unidad, adeudos individuales) es relación del residente con el tercero, no del administrador.",
+          "ancla": "Principio por anclar al artículo exacto de facultades/competencia del administrador."
+        },
+        {
+          "filtro": "3. Contenido / derechos",
+          "pregunta": "¿El contenido respeta los derechos y la ley? Exhibir listas de deudores viola los candados de la ley de transparencia (datos personales). Condicionar un servicio esencial (agua) como coerción de cobro roza el derecho al agua. Las vías de cobro son las legales (procedimiento del régimen, título ejecutivo), no la exhibición pública.",
+          "ancla": "Ley de transparencia (candados de datos personales); derecho humano al agua. Principio por anclar."
+        },
+        {
+          "filtro": "4. Representación ante terceros",
+          "pregunta": "Si el acto involucra a un tercero (municipio, autoridad, proveedor externo), ¿quien representó al condominio es administrador nombrado por asamblea y con acta de nombramiento PROTOCOLIZADA ante notario? Sin protocolización, la representación ante terceros NO es válida y la gestión queda viciada.",
+          "ancla": "Art. 42 fr. III (representación legal); requisito de protocolización. Principio sólido, anclar artículo exacto del nombramiento/protocolización."
+        },
+        {
+          "filtro": "5. Mandato de asamblea",
+          "pregunta": "¿La asamblea aprobó esta gestión o acto ante terceros? Ir a gestionar en nombre del condominio ante una autoridad requiere acuerdo de asamblea; nadie —ni el administrador legítimo— puede representar al condominio ante terceros por su cuenta sin mandato.",
+          "ancla": "La asamblea es el órgano supremo (Art. 30). Principio por anclar al artículo de facultades de asamblea sobre gestiones ante terceros."
+        }
+      ],
+      "ejemplo_ilustrativo": "Comunicado emitido por un PROVEEDOR (no el administrador) avisando que los residentes deben pagar el agua o no se arreglará la bomba del cárcamo, citando una lista de adeudos que la alcaldía mostró en reuniones, y anunciando que se exhibirá la lista de deudores. Falla los cinco filtros: (1) lo emite un proveedor sin facultad; (2) se mete en consumo privativo de agua, fuera de su competencia; (3) amenaza con servicio esencial y anuncia exhibición de deudores contra la ley de transparencia; (4) quien se reunió con la alcaldía no tendría representación válida sin protocolización; (5) no consta mandato de asamblea para gestionar ante el municipio.",
+      "prueba_que_se_pide": [
+        "El comunicado o acto (texto/imagen).",
+        "Quién lo emite (¿administrador, proveedor, comité?).",
+        "Acta de nombramiento del administrador y su protocolización.",
+        "Acta de asamblea que autorizara la gestión ante el tercero."
+      ],
+      "resultado_si_cumple": "Si el acto lo emite el administrador legítimo, sobre asunto común, con contenido que respeta derechos, con representación protocolizada y mandato de asamblea, CUMPLE. Declararlo.",
+      "via": "Asamblea (desconocer/impugnar el acto viciado); comité de vigilancia; especialista para el dictamen.",
+      "nota_sin_bando": "Verificar cada filtro contra el documento real. Si el acto cumple los cinco, es válido y LEGER lo reconoce. No presuponer vicio."
     }
   ],
-
   "arquitectura_de_riesgos": {
     "descripcion": "Los patrones no suelen aparecer sueltos: se combinan en un edificio donde cada capa protege a la anterior. LEGER guía el descubrimiento capa por capa con preguntas de verificación — NO presupone que el edificio completo exista en todo condominio.",
     "secuencia_tipica_de_verificacion": [
@@ -153,11 +213,72 @@
     ],
     "advertencia_central": "Se verifica el cumplimiento de la gobernanza, no se busca el complot. El edificio revela lo que las pruebas sostienen, no lo que la sospecha supone. Cada capa se confirma o se DESCARTA según las pruebas. Afirmar el complot sin pruebas hace perder al usuario y quema la credibilidad de LEGER; verificar con pruebas lo empodera y sirve por igual al condómino y al desarrollador honesto."
   },
-
   "pendientes": [
     "Anclar cada 'principio' y cada verificación al artículo exacto del corpus legal oficial vigente.",
     "Desarrollar P04, P05, P06 con más detalle a partir de casos analizados.",
     "Agregar patrones nuevos conforme se analicen más cláusulas (versiones sucesivas).",
-    "Implementar la activación del modo auditoría en CÓDIGO (disparo por adjunto + consentimiento), no sólo en el prompt."
-  ]
+    "Implementar la activación del modo auditoría en CÓDIGO (disparo por adjunto + consentimiento), no sólo en el prompt.",
+    "Anclar los filtros 2, 3, 4 y 5 de P07 a los artículos exactos (competencia del administrador, transparencia, protocolización del nombramiento, facultad de asamblea sobre gestiones ante terceros)."
+  ],
+  "cambios_desde_v1.1": [
+    "Se agrega P07: auditoría de ACTOS de la administración (comunicados, gestiones, avisos), distinta de la auditoría de CLÁUSULAS. Un acto se verifica contra cinco filtros: facultad, competencia, contenido/derechos, representación y mandato.",
+    "Se agrega la jerarquía documental interna y la lista blanca de documentos auditables (qué se audita y qué no).",
+    "Se distingue auditoría de REGLAS (P01-P06, documentos constitutivos) de auditoría de ACTOS (P07, comunicados y gestiones)."
+  ],
+  "documentos_auditables": {
+    "descripcion": "LEGER solo audita documentos que corresponden al régimen y sus leyes. Antes de auditar, clasifica el documento y CONFIRMA con el usuario el tipo (esto parece un X, ¿es correcto?). Si el documento no corresponde al régimen, lo rechaza amablemente y no lo audita.",
+    "jerarquia_documental_interna": "Dentro del régimen hay jerarquía: Acta constitutiva del régimen (raíz, protocolizada) > Estatutos > Reglamento > Reglamento interno (rango menor). Un documento de menor rango NO puede contradecir a uno de mayor rango; si lo hace, se extralimitó (grieta por jerarquía).",
+    "tipos": {
+      "reglas_jerarquicas": {
+        "documentos": [
+          "acta constitutiva del régimen",
+          "estatutos",
+          "reglamento",
+          "reglamento interno"
+        ],
+        "se_audita_contra": "ley + buena gobernanza + documentos de mayor rango (los de menor rango también contra los superiores)",
+        "patrones": [
+          "P01",
+          "P02",
+          "P03",
+          "P04"
+        ]
+      },
+      "documentos_de_la_AC": {
+        "documentos": [
+          "acta constitutiva de la AC",
+          "estatutos de la AC"
+        ],
+        "se_audita_contra": "su naturaleza y su relación con el régimen (la AC no es el régimen)",
+        "patrones": [
+          "P04"
+        ]
+      },
+      "actos_de_administracion": {
+        "documentos": [
+          "comunicados de la administración",
+          "avisos",
+          "circulares",
+          "actas de asamblea",
+          "convocatorias"
+        ],
+        "se_audita_contra": "facultad, competencia, contenido/derechos, representación y mandato (debido proceso)",
+        "patrones": [
+          "P07"
+        ]
+      },
+      "financieros": {
+        "documentos": [
+          "presupuesto",
+          "estados de cuenta",
+          "cálculo de cuotas"
+        ],
+        "se_audita_contra": "transparencia y base del 100% del régimen",
+        "patrones": [
+          "P05"
+        ]
+      }
+    },
+    "no_auditables": "Recibos personales, contratos de compraventa individuales, correspondencia privada, documentos de consumo privativo, fotos y cualquier documento ajeno al régimen. LEGER lo dice con claridad y ofrece revisar los que sí corresponden."
+  }
 }

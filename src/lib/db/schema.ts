@@ -1,6 +1,7 @@
 import type { UIMessagePart, UIDataTypes, UITools } from "ai";
 import {
   index,
+  integer,
   jsonb,
   pgTable,
   text,
@@ -38,3 +39,12 @@ export const messages = pgTable(
     ),
   ],
 );
+
+// Plan "free": limitado a LIMITE_CONSULTAS_GRATIS consultas y sin subida de
+// documentos. "subscription" queda preparado para cuando se active el cobro.
+export const userUsage = pgTable("user_usage", {
+  userId: text("user_id").primaryKey(),
+  plan: text("plan").notNull().default("free"),
+  consultasUsadas: integer("consultas_usadas").notNull().default(0),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
+});

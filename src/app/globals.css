@@ -1,15 +1,18 @@
 @import "tailwindcss";
 @source "../../node_modules/streamdown/dist/*.js";
 
+/* Tema siempre oscuro: la marca usa el fondo "vórtice" oscuro en toda la
+   app, así que no seguimos prefers-color-scheme del sistema — evita mezclas
+   como una barra lateral clara junto a un fondo oscuro. */
 :root {
-  --background: #ffffff;
-  --foreground: #1a1a1a;
-  --surface: #f7f7f8;
-  --border: #e5e5e5;
+  --background: #212121;
+  --foreground: #ececec;
+  --surface: #2f2f2f;
+  --border: #3d3d3d;
   --card: var(--surface);
   --card-foreground: var(--foreground);
   --muted: var(--surface);
-  --muted-foreground: #6b6b6b;
+  --muted-foreground: #a3a3a3;
   --input: var(--border);
   --primary: var(--foreground);
   --primary-foreground: var(--background);
@@ -32,16 +35,6 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
   --font-sans: var(--font-inter);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #212121;
-    --foreground: #ececec;
-    --surface: #2f2f2f;
-    --border: #3d3d3d;
-    --muted-foreground: #a3a3a3;
-  }
 }
 
 body {
@@ -155,74 +148,21 @@ body {
   display: none;
 }
 
-.vfx-theme-controls {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  z-index: 10;
+/* Muestras de color del selector de tema: centro oscuro (como el fondo real)
+   con un halo gaussiano del color de acento, intenso arriba y suave abajo. */
+.vfx-swatch {
+  background-color: var(--vfx-bg-base);
 }
 
-.vfx-style-toggle {
-  display: flex;
-  gap: 2px;
-  padding: 2px;
-  border-radius: 999px;
-  background-color: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+.vfx-swatch.coral {
+  box-shadow:
+    0 -3px 9px 1px rgba(170, 51, 51, 0.9),
+    0 5px 12px 2px rgba(170, 51, 51, 0.25);
 }
 
-.vfx-style-toggle button {
-  padding: 0.3rem 0.7rem;
-  border-radius: 999px;
-  border: none;
-  background: transparent;
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 0.7rem;
-  cursor: pointer;
-  transition: background-color 0.2s, color 0.2s;
+.vfx-swatch.cyan {
+  box-shadow:
+    0 -3px 9px 1px rgba(51, 170, 170, 0.9),
+    0 5px 12px 2px rgba(51, 170, 170, 0.25);
 }
 
-.vfx-style-toggle button:hover {
-  color: rgba(255, 255, 255, 0.9);
-}
-
-.vfx-style-toggle button.active {
-  background-color: rgba(255, 255, 255, 0.15);
-  color: white;
-}
-
-.vfx-color-toggle {
-  display: flex;
-  gap: 10px;
-}
-
-.vfx-color-toggle .theme-btn {
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  cursor: pointer;
-  padding: 0;
-  transition: transform 0.2s, box-shadow 0.2s;
-  background-clip: padding-box;
-}
-
-.vfx-color-toggle .theme-btn:hover {
-  transform: scale(1.1);
-}
-
-.vfx-color-toggle .theme-btn.active {
-  border-color: white;
-  box-shadow: 0 0 10px white;
-}
-
-.vfx-color-toggle .theme-btn.coral-theme {
-  background-color: var(--vfx-accent-coral-base);
-}
-
-.vfx-color-toggle .theme-btn.cyan-theme {
-  background-color: var(--vfx-accent-cyan-base);
-}

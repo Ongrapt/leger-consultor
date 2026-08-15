@@ -1,7 +1,7 @@
 "use server";
 
 import { auth } from "@clerk/nextjs/server";
-import { desc, eq } from "drizzle-orm";
+import { and, desc, eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { getDb } from "@/lib/db";
@@ -21,6 +21,17 @@ export async function crearDocumento(titulo: string) {
 
   revalidatePath("/", "layout");
   redirect(`/documentos/${documento.id}`);
+}
+
+export async function eliminarDocumento(id: string) {
+  const { userId } = await auth();
+  if (!userId) throw new Error("No autorizado");
+
+  await getDb()
+    .delete(documents)
+    .where(and(eq(documents.id, id), eq(documents.userId, userId)));
+
+  revalidatePath("/", "layout");
 }
 
 export async function listarDocumentos() {

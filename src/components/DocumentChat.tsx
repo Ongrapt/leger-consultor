@@ -3,20 +3,29 @@
 import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport, type FileUIPart, type UIMessage } from "ai";
 import { upload } from "@vercel/blob/client";
+import { PDFDocument } from "pdf-lib";
 import { useRef, useState } from "react";
 import { Streamdown } from "streamdown";
 import "streamdown/styles.css";
 import WatchBackground from "@/components/WatchBackground";
 import { pathnameParaDocumento, urlProxyDeArchivo } from "@/lib/blob";
+import {
+  LIMITE_CONSULTAS_GRATIS,
+  LIMITE_PAGINAS_PDF,
+  puedeSubirDocumentos as puedeSubirDocumentosSegunUso,
+  type Uso,
+} from "@/lib/usage-shared";
 
 export default function DocumentChat({
   documentId,
   initialMessages,
+  uso,
 }: {
   documentId: string;
   initialMessages: UIMessage[];
+  uso: Uso;
 }) {
-  const { messages, sendMessage, status } = useChat({
+  const { messages, sendMessage, status, error } = useChat({
     id: documentId,
     messages: initialMessages,
     transport: new DefaultChatTransport({
@@ -27,14 +36,61 @@ export default function DocumentChat({
   const [input, setInput] = useState("");
   const [archivos, setArchivos] = useState<FileList | null>(null);
   const [subiendo, setSubiendo] = useState(false);
+  const [copiedId, setCopiedId] = useState<string | null>(null);
+  const [errorArchivo, setErrorArchivo] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const puedeSubirDocumentos = puedeSubirDocumentosSegunUso(uso);
+  const consultasRestantes = Math.max(
+    0,
+    LIMITE_CONSULTAS_GRATIS - uso.consultasUsadas,
+  );
+  const limiteAlcanzado = uso.plan === "free" && consultasRestantes <= 0;
 
   const isBusy = status === "submitted" || status === "streaming" || subiendo;
   const hayArchivos = !!archivos && archivos.length > 0;
+  const mensajeError = error
+    ? (() => {
+        try {
+          return (JSON.parse(error.message) as { error?: string }).error ?? error.message;
+        } catch {
+          return error.message;
+        }
+      })()
+    : null;
+
+  async function copiarMensaje(message: UIMessage) {
+    const texto = message.parts
+      .filter((part): part is Extract<typeof part, { type: "text" }> => part.type === "text")
+      .map((part) => part.text)
+      .join("\n\n");
+    if (!texto) return;
+    await navigator.clipboard.writeText(texto);
+    setCopiedId(message.id);
+    setTimeout(() => setCopiedId((current) => (current === message.id ? null : current)), 1500);
+  }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if ((!input.trim() && !hayArchivos) || isBusy) return;
+    if ((!input.trim() && !hayArchivos) || isBusy || limiteAlcanzado) return;
+    if (hayArchivos && !puedeSubirDocumentos) return;
+
+    if (hayArchivos) {
+      const archivo = archivos![0];
+      if (archivo.type === "application/pdf") {
+        const doc = await PDFDocument.load(await archivo.arrayBuffer(), {
+          ignoreEncryption: true,
+        });
+        const paginas = doc.getPageCount();
+        if (paginas > LIMITE_PAGINAS_PDF) {
+          setErrorArchivo(
+            `Este PDF tiene ${paginas} páginas; el límite es ${LIMITE_PAGINAS_PDF} para mantener la precisión del análisis.`,
+          );
+          return;
+        }
+      }
+    }
+    setErrorArchivo(null);
 
     let fileParts: FileUIPart[] | undefined;
     if (hayArchivos) {
@@ -71,7 +127,7 @@ export default function DocumentChat({
   }
 
   return (
-    <WatchBackground className="flex h-dvh flex-col items-center">
+    <WatchBackground className="flex h-full flex-col items-center">
       <main className="flex w-full max-w-3xl flex-1 flex-col overflow-y-auto px-4">
         {messages.length === 0 ? (
           <div className="flex flex-1 flex-col items-center justify-center gap-2 text-center">
@@ -88,8 +144,8 @@ export default function DocumentChat({
             {messages.map((message) => (
               <div
                 key={message.id}
-                className={`flex ${
-                  message.role === "user" ? "justify-end" : "justify-start"
+                className={`flex flex-col ${
+                  message.role === "user" ? "items-end" : "items-start"
                 }`}
               >
                 <div
@@ -141,6 +197,59 @@ export default function DocumentChat({
                     return null;
                   })}
                 </div>
+                {message.role === "assistant" && (
+                  <button
+                    type="button"
+                    onClick={() => copiarMensaje(message)}
+                    aria-label="Copiar respuesta"
+                    className="mt-1 flex items-center gap-1 rounded-md px-1.5 py-1 text-xs text-foreground/40 transition-colors hover:bg-background/50 hover:text-foreground/70"
+                  >
+                    {copiedId === message.id ? (
+                      <>
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          className="h-3.5 w-3.5"
+                          aria-hidden="true"
+                        >
+                          <path
+                            d="M20 6L9 17l-5-5"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                        Copiado
+                      </>
+                    ) : (
+                      <>
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          className="h-3.5 w-3.5"
+                          aria-hidden="true"
+                        >
+                          <rect
+                            x="9"
+                            y="9"
+                            width="13"
+                            height="13"
+                            rx="2"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                          />
+                          <path
+                            d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                          />
+                        </svg>
+                        Copiar
+                      </>
+                    )}
+                  </button>
+                )}
               </div>
             ))}
             {status === "submitted" && (
@@ -155,6 +264,18 @@ export default function DocumentChat({
       </main>
 
       <div className="w-full max-w-3xl px-4 pb-6 pt-2">
+        {(mensajeError || errorArchivo || limiteAlcanzado) && (
+          <div className="mb-2 rounded-xl border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-xs text-amber-600">
+            {mensajeError ??
+              errorArchivo ??
+              `Alcanzaste el límite de ${LIMITE_CONSULTAS_GRATIS} consultas gratis. La suscripción estará disponible pronto.`}
+          </div>
+        )}
+        {!limiteAlcanzado && uso.plan === "free" && (
+          <p className="mb-1.5 px-1 text-xs text-foreground/40">
+            {consultasRestantes} de {LIMITE_CONSULTAS_GRATIS} consultas gratis restantes
+          </p>
+        )}
         {hayArchivos && (
           <div className="mb-2 flex flex-wrap gap-1.5">
             {Array.from(archivos!).map((f, i) => (
@@ -175,44 +296,84 @@ export default function DocumentChat({
             ref={fileInputRef}
             type="file"
             accept="application/pdf,image/*"
-            multiple
-            onChange={(e) => setArchivos(e.target.files)}
-            disabled={isBusy}
+            onChange={(e) => {
+              setArchivos(e.target.files);
+              setErrorArchivo(null);
+            }}
+            disabled={isBusy || !puedeSubirDocumentos}
             className="hidden"
             id="file-upload"
           />
           <label
             htmlFor="file-upload"
-            aria-label="Adjuntar acta, convocatoria o reglamento (PDF o imagen)"
+            aria-label={
+              puedeSubirDocumentos
+                ? `Adjuntar un acta del régimen (PDF, máx. ${LIMITE_PAGINAS_PDF} páginas, o imagen)`
+                : "Adjuntar documentos: disponible con suscripción"
+            }
+            title={
+              puedeSubirDocumentos
+                ? `Un archivo por análisis, máx. ${LIMITE_PAGINAS_PDF} páginas`
+                : "Subir documentos para análisis requiere una suscripción"
+            }
             className={`flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center rounded-full text-foreground/50 transition-colors hover:bg-background/50 hover:text-foreground/80 ${
-              isBusy ? "pointer-events-none opacity-40" : ""
+              isBusy || !puedeSubirDocumentos ? "pointer-events-none opacity-40" : ""
             }`}
           >
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              className="h-4 w-4"
-              aria-hidden="true"
-            >
-              <path
-                d="M21.44 11.05l-9.19 9.19a5 5 0 01-7.07-7.07l9.19-9.19a3.5 3.5 0 014.95 4.95l-9.2 9.19a2 2 0 01-2.83-2.83l8.49-8.48"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+            {puedeSubirDocumentos ? (
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                className="h-4 w-4"
+                aria-hidden="true"
+              >
+                <path
+                  d="M21.44 11.05l-9.19 9.19a5 5 0 01-7.07-7.07l9.19-9.19a3.5 3.5 0 014.95 4.95l-9.2 9.19a2 2 0 01-2.83-2.83l8.49-8.48"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            ) : (
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                className="h-4 w-4"
+                aria-hidden="true"
+              >
+                <rect
+                  x="5"
+                  y="11"
+                  width="14"
+                  height="9"
+                  rx="2"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                />
+                <path
+                  d="M8 11V8a4 4 0 018 0v3"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
+              </svg>
+            )}
           </label>
           <input
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            disabled={isBusy}
-            placeholder="Escribe tu mensaje a Leger…"
+            disabled={isBusy || limiteAlcanzado}
+            placeholder={
+              limiteAlcanzado
+                ? "Alcanzaste el límite de consultas gratis"
+                : "Escribe tu mensaje a Leger…"
+            }
             className="flex-1 bg-transparent text-[15px] text-foreground placeholder:text-foreground/40 outline-none disabled:opacity-60"
           />
           <button
             type="submit"
-            disabled={isBusy || (!input.trim() && !hayArchivos)}
+            disabled={isBusy || limiteAlcanzado || (!input.trim() && !hayArchivos)}
             aria-label="Enviar"
             className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-foreground text-background transition-opacity disabled:opacity-30"
           >

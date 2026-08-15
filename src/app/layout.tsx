@@ -3,6 +3,23 @@ import { Inter } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
 
+// La app siempre usa tema oscuro (ver globals.css); estas variables replican
+// esa misma paleta dentro de los componentes de Clerk (SignIn, SignUp, etc.).
+const clerkAppearance = {
+  variables: {
+    colorPrimary: "#ececec",
+    colorPrimaryForeground: "#212121",
+    colorBackground: "#2f2f2f",
+    colorForeground: "#ececec",
+    colorInput: "#212121",
+    colorInputForeground: "#ececec",
+    colorMuted: "#212121",
+    colorMutedForeground: "#a3a3a3",
+    colorBorder: "#3d3d3d",
+    colorNeutral: "#ececec",
+  },
+} as const;
+
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
@@ -18,7 +35,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="es" className={`${inter.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-background text-foreground">
-        <ClerkProvider afterSignOutUrl="/sign-in">{children}</ClerkProvider>
+        <ClerkProvider afterSignOutUrl="/sign-in" appearance={clerkAppearance}>
+          {children}
+        </ClerkProvider>
       </body>
     </html>
   );
