@@ -8,6 +8,12 @@ export { LIMITE_CONSULTAS_GRATIS, puedeSubirDocumentos };
 export type { Uso };
 
 export async function obtenerUso(userId: string): Promise<Uso> {
+  // Fuera de producción (dev local, previews) no aplicamos el límite de
+  // consultas/análisis gratis, para poder probar la app sin restricción.
+  if (process.env.VERCEL_ENV !== "production") {
+    return { plan: "subscription", consultasUsadas: 0 };
+  }
+
   const [fila] = await getDb()
     .select({
       plan: userUsage.plan,
