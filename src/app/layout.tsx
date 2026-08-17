@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
+import VersionLogger from "@/components/VersionLogger";
+import packageJson from "../../package.json";
 import "./globals.css";
 
 // La app siempre usa tema oscuro (ver globals.css); estas variables replican
@@ -35,6 +37,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="es" className={`${inter.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-background text-foreground">
+        <VersionLogger
+          version={packageJson.version}
+          commit={process.env.VERCEL_GIT_COMMIT_SHA?.slice(0, 7) ?? null}
+          entorno={process.env.VERCEL_ENV ?? "development"}
+        />
         <ClerkProvider afterSignOutUrl="/sign-in" appearance={clerkAppearance}>
           {children}
         </ClerkProvider>

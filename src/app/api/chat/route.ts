@@ -68,6 +68,15 @@ ${bloqueCorpus}${bloquePatrones}`;
 }
 
 export async function POST(req: Request) {
+  try {
+    return await manejarPost(req);
+  } catch (error) {
+    console.error("[api/chat] Error inesperado:", error);
+    return Response.json({ error: "Ocurrió un error inesperado." }, { status: 500 });
+  }
+}
+
+async function manejarPost(req: Request) {
   const { userId } = await auth();
   if (!userId) {
     return Response.json({ error: "No autorizado" }, { status: 401 });
@@ -154,6 +163,9 @@ export async function POST(req: Request) {
     model: anthropic("claude-sonnet-5"),
     instructions: construirSystemPrompt(messages),
     messages: await convertToModelMessages(mensajesParaModelo),
+    onError: ({ error }) => {
+      console.error("[api/chat] Error del modelo:", error);
+    },
   });
 
   return createUIMessageStreamResponse({
@@ -161,6 +173,10 @@ export async function POST(req: Request) {
       stream: result.stream,
       originalMessages: messages,
       generateMessageId: () => crypto.randomUUID(),
+      onError: (error) => {
+        console.error("[api/chat] Error de streaming:", error);
+        return "Ocurrió un error al generar la respuesta. Intenta de nuevo.";
+      },
       onEnd: async ({ responseMessage }) => {
         await db
           .insert(messagesTable)

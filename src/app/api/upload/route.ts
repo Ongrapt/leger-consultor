@@ -39,6 +39,7 @@ export async function POST(req: Request) {
     });
     return Response.json(resultado);
   } catch (error) {
+    console.error("[api/upload] Error:", error);
     return Response.json(
       { error: error instanceof Error ? error.message : "Error al subir el archivo" },
       { status: 400 },

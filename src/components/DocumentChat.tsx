@@ -35,6 +35,9 @@ export default function DocumentChat({
       api: "/api/chat",
       body: { documentId },
     }),
+    onError: (error) => {
+      console.error("[chat] Error en la petición:", error);
+    },
   });
   const [input, setInput] = useState("");
   const [archivos, setArchivos] = useState<FileList | null>(null);
@@ -122,6 +125,12 @@ export default function DocumentChat({
             } satisfies FileUIPart;
           }),
         );
+      } catch (error) {
+        console.error("[upload] Error al subir el archivo:", error);
+        setErrorArchivo(
+          error instanceof Error ? error.message : "Error al subir el archivo",
+        );
+        return;
       } finally {
         setSubiendo(false);
       }
