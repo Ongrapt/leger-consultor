@@ -4,6 +4,7 @@ import Link from "next/link";
 import WatchBackground from "@/components/WatchBackground";
 import NuevaConsultaButton from "@/components/NuevaConsultaButton";
 import NuevoAnalisisModal from "@/components/NuevoAnalisisModal";
+import { LIMITE_CONSULTAS_GRATIS } from "@/lib/usage-shared";
 
 export default async function InicioPage() {
   const { userId } = await auth();
@@ -35,7 +36,7 @@ export default async function InicioPage() {
               </button>
             </SignUpButton>
             <p className="text-xs text-foreground/40">
-              Incluye 3 consultas sin costo. ¿Ya tienes cuenta?{" "}
+              Incluye {LIMITE_CONSULTAS_GRATIS} consultas sin costo. ¿Ya tienes cuenta?{" "}
               <Link href="/sign-in" className="underline hover:text-foreground/70">
                 Inicia sesión
               </Link>

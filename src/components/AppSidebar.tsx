@@ -8,6 +8,7 @@ import NuevaConsultaButton from "@/components/NuevaConsultaButton";
 import NuevoAnalisisModal from "@/components/NuevoAnalisisModal";
 import VfxThemeMenu from "@/components/VfxThemeMenu";
 import { eliminarDocumento } from "@/lib/actions/documentos";
+import { LIMITE_CONSULTAS_GRATIS } from "@/lib/usage-shared";
 
 type Documento = { id: string; title: string; updatedAt: Date };
 
@@ -104,8 +105,8 @@ export default function AppSidebar({
             ) : (
               <div className="flex flex-col gap-2 rounded-xl border border-border p-3">
                 <p className="text-xs text-foreground/60">
-                  Crea una cuenta gratis para empezar: incluye 3 consultas sin
-                  costo.
+                  Crea una cuenta gratis para empezar: incluye{" "}
+                  {LIMITE_CONSULTAS_GRATIS} consultas sin costo.
                 </p>
                 <SignUpButton mode="redirect">
                   <button
