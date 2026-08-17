@@ -1,5 +1,6 @@
 import type { UIMessagePart, UIDataTypes, UITools } from "ai";
 import {
+  boolean,
   index,
   integer,
   jsonb,
@@ -15,6 +16,10 @@ export const documents = pgTable(
     id: uuid("id").primaryKey().defaultRandom(),
     userId: text("user_id").notNull(),
     title: text("title").notNull(),
+    // Marca si ya se adjuntó un archivo a este documento; consume el cupo de
+    // LIMITE_DOCUMENTOS_GRATIS la primera vez, adjuntos posteriores al mismo
+    // documento no vuelven a contar.
+    archivoAnalizado: boolean("archivo_analizado").notNull().default(false),
     createdAt: timestamp("created_at").notNull().defaultNow(),
     updatedAt: timestamp("updated_at").notNull().defaultNow(),
   },
@@ -40,11 +45,13 @@ export const messages = pgTable(
   ],
 );
 
-// Plan "free": limitado a LIMITE_CONSULTAS_GRATIS consultas y sin subida de
-// documentos. "subscription" queda preparado para cuando se active el cobro.
+// Plan "free": limitado a LIMITE_CONSULTAS_GRATIS consultas y a
+// LIMITE_DOCUMENTOS_GRATIS documentos analizados. "subscription" queda
+// preparado para cuando se active el cobro.
 export const userUsage = pgTable("user_usage", {
   userId: text("user_id").primaryKey(),
   plan: text("plan").notNull().default("free"),
   consultasUsadas: integer("consultas_usadas").notNull().default(0),
+  documentosAnalizados: integer("documentos_analizados").notNull().default(0),
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });

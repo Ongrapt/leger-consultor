@@ -16,7 +16,7 @@ export default async function DocumentoPage(
 
   const db = getDb();
   const [documento] = await db
-    .select({ id: documents.id })
+    .select({ id: documents.id, archivoAnalizado: documents.archivoAnalizado })
     .from(documents)
     .where(and(eq(documents.id, id), eq(documents.userId, userId)))
     .limit(1);
@@ -41,6 +41,11 @@ export default async function DocumentoPage(
   const uso = await obtenerUso(userId);
 
   return (
-    <DocumentChat documentId={id} initialMessages={initialMessages} uso={uso} />
+    <DocumentChat
+      documentId={id}
+      initialMessages={initialMessages}
+      uso={uso}
+      documentoYaAnalizado={documento.archivoAnalizado}
+    />
   );
 }

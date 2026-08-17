@@ -11,6 +11,7 @@ import WatchBackground from "@/components/WatchBackground";
 import { pathnameParaDocumento, urlProxyDeArchivo } from "@/lib/blob";
 import {
   LIMITE_CONSULTAS_GRATIS,
+  LIMITE_DOCUMENTOS_GRATIS,
   LIMITE_PAGINAS_PDF,
   puedeSubirDocumentos as puedeSubirDocumentosSegunUso,
   type Uso,
@@ -20,10 +21,12 @@ export default function DocumentChat({
   documentId,
   initialMessages,
   uso,
+  documentoYaAnalizado,
 }: {
   documentId: string;
   initialMessages: UIMessage[];
   uso: Uso;
+  documentoYaAnalizado: boolean;
 }) {
   const { messages, sendMessage, status, error } = useChat({
     id: documentId,
@@ -40,10 +43,14 @@ export default function DocumentChat({
   const [errorArchivo, setErrorArchivo] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const puedeSubirDocumentos = puedeSubirDocumentosSegunUso(uso);
+  const puedeSubirDocumentos = puedeSubirDocumentosSegunUso(uso, documentoYaAnalizado);
   const consultasRestantes = Math.max(
     0,
     LIMITE_CONSULTAS_GRATIS - uso.consultasUsadas,
+  );
+  const documentosRestantes = Math.max(
+    0,
+    LIMITE_DOCUMENTOS_GRATIS - uso.documentosAnalizados,
   );
   const limiteAlcanzado = uso.plan === "free" && consultasRestantes <= 0;
 
@@ -274,6 +281,8 @@ export default function DocumentChat({
         {!limiteAlcanzado && uso.plan === "free" && (
           <p className="mb-1.5 px-1 text-xs text-foreground/40">
             {consultasRestantes} de {LIMITE_CONSULTAS_GRATIS} consultas gratis restantes
+            {!documentoYaAnalizado &&
+              ` · ${documentosRestantes} de ${LIMITE_DOCUMENTOS_GRATIS} análisis de documento gratis`}
           </p>
         )}
         {hayArchivos && (
@@ -309,12 +318,12 @@ export default function DocumentChat({
             aria-label={
               puedeSubirDocumentos
                 ? `Adjuntar un acta del régimen (PDF, máx. ${LIMITE_PAGINAS_PDF} páginas, o imagen)`
-                : "Adjuntar documentos: disponible con suscripción"
+                : "Ya usaste tu análisis de documento gratis: disponible de nuevo con suscripción"
             }
             title={
               puedeSubirDocumentos
                 ? `Un archivo por análisis, máx. ${LIMITE_PAGINAS_PDF} páginas`
-                : "Subir documentos para análisis requiere una suscripción"
+                : "Ya usaste tu análisis de documento gratis. La suscripción estará disponible pronto."
             }
             className={`flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center rounded-full text-foreground/50 transition-colors hover:bg-background/50 hover:text-foreground/80 ${
               isBusy || !puedeSubirDocumentos ? "pointer-events-none opacity-40" : ""

@@ -23,6 +23,7 @@ import { documents, messages as messagesTable } from "@/lib/db/schema";
 import {
   obtenerUso,
   puedeSubirDocumentos,
+  registrarAnalisisDocumento,
   registrarConsulta,
   tieneConsultasDisponibles,
 } from "@/lib/usage";
@@ -77,7 +78,7 @@ export async function POST(req: Request) {
 
   const db = getDb();
   const [documento] = await db
-    .select({ id: documents.id })
+    .select({ id: documents.id, archivoAnalizado: documents.archivoAnalizado })
     .from(documents)
     .where(and(eq(documents.id, documentId), eq(documents.userId, userId)))
     .limit(1);
@@ -90,9 +91,15 @@ export async function POST(req: Request) {
     const uso = await obtenerUso(userId);
     const archivosAdjuntos = ultimoMensaje.parts.filter((p) => p.type === "file");
 
-    if (archivosAdjuntos.length > 0 && !puedeSubirDocumentos(uso)) {
+    if (
+      archivosAdjuntos.length > 0 &&
+      !puedeSubirDocumentos(uso, documento.archivoAnalizado)
+    ) {
       return Response.json(
-        { error: "Subir documentos para análisis requiere una suscripción." },
+        {
+          error:
+            "Ya usaste tu análisis de documento gratis. La suscripción estará disponible pronto.",
+        },
         { status: 403 },
       );
     }
@@ -136,6 +143,9 @@ export async function POST(req: Request) {
       .onConflictDoNothing();
 
     await registrarConsulta(userId);
+    if (archivosAdjuntos.length > 0 && !documento.archivoAnalizado) {
+      await registrarAnalisisDocumento(userId, documentId);
+    }
   }
 
   const mensajesParaModelo = await resolverArchivosParaModelo(messages);
