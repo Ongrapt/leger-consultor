@@ -213,66 +213,75 @@ export default function DocumentChat({
                     return null;
                   })}
                 </div>
-                {message.role === "assistant" && (
-                  <button
-                    type="button"
-                    onClick={() => copiarMensaje(message)}
-                    aria-label="Copiar respuesta"
-                    className="mt-1 flex items-center gap-1 rounded-md px-1.5 py-1 text-xs text-foreground/40 transition-colors hover:bg-background/50 hover:text-foreground/70"
-                  >
-                    {copiedId === message.id ? (
-                      <>
-                        <svg
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          className="h-3.5 w-3.5"
-                          aria-hidden="true"
-                        >
-                          <path
-                            d="M20 6L9 17l-5-5"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
-                        Copiado
-                      </>
-                    ) : (
-                      <>
-                        <svg
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          className="h-3.5 w-3.5"
-                          aria-hidden="true"
-                        >
-                          <rect
-                            x="9"
-                            y="9"
-                            width="13"
-                            height="13"
-                            rx="2"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                          />
-                          <path
-                            d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                          />
-                        </svg>
-                        Copiar
-                      </>
-                    )}
-                  </button>
-                )}
+                <button
+                  type="button"
+                  onClick={() => copiarMensaje(message)}
+                  aria-label={
+                    message.role === "assistant" ? "Copiar respuesta" : "Copiar consulta"
+                  }
+                  className="mt-1 flex items-center gap-1 rounded-md px-1.5 py-1 text-xs text-foreground/40 transition-colors hover:bg-background/50 hover:text-foreground/70"
+                >
+                  {copiedId === message.id ? (
+                    <>
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        className="h-3.5 w-3.5"
+                        aria-hidden="true"
+                      >
+                        <path
+                          d="M20 6L9 17l-5-5"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                      Copiado
+                    </>
+                  ) : (
+                    <>
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        className="h-3.5 w-3.5"
+                        aria-hidden="true"
+                      >
+                        <rect
+                          x="9"
+                          y="9"
+                          width="13"
+                          height="13"
+                          rx="2"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                        />
+                        <path
+                          d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                        />
+                      </svg>
+                      Copiar
+                    </>
+                  )}
+                </button>
               </div>
             ))}
             {status === "submitted" && (
-              <div className="flex justify-start">
-                <span className="text-sm text-foreground/40">
-                  Leger está escribiendo…
-                </span>
+              <div className="flex justify-start px-1 py-2" aria-label="Leger está escribiendo">
+                <span
+                  className="h-1.5 w-1.5 animate-bounce rounded-full bg-foreground/40"
+                  style={{ animationDelay: "0ms" }}
+                />
+                <span
+                  className="ml-1 h-1.5 w-1.5 animate-bounce rounded-full bg-foreground/40"
+                  style={{ animationDelay: "150ms" }}
+                />
+                <span
+                  className="ml-1 h-1.5 w-1.5 animate-bounce rounded-full bg-foreground/40"
+                  style={{ animationDelay: "300ms" }}
+                />
               </div>
             )}
           </div>

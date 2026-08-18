@@ -29,7 +29,11 @@ import {
 } from "@/lib/usage";
 import { LIMITE_PAGINAS_PDF } from "@/lib/usage-shared";
 
-export const maxDuration = 30;
+// Un análisis legal con el corpus completo inyectado puede tardar más de
+// 30s en generarse; si la función se corta a mitad de la respuesta, el
+// `onEnd` que la guarda en la base de datos nunca corre y el usuario la
+// pierde al recargar. 300s es el máximo disponible en el plan actual.
+export const maxDuration = 300;
 
 const SKILL_PATH = path.join(process.cwd(), "SKILL.md");
 
@@ -178,20 +182,24 @@ async function manejarPost(req: Request) {
         return "Ocurrió un error al generar la respuesta. Intenta de nuevo.";
       },
       onEnd: async ({ responseMessage }) => {
-        await db
-          .insert(messagesTable)
-          .values({
-            id: responseMessage.id,
-            documentId,
-            role: responseMessage.role,
-            parts: responseMessage.parts,
-          })
-          .onConflictDoNothing();
-        await db
-          .update(documents)
-          .set({ updatedAt: new Date() })
-          .where(eq(documents.id, documentId));
-        revalidatePath("/", "layout");
+        try {
+          await db
+            .insert(messagesTable)
+            .values({
+              id: responseMessage.id,
+              documentId,
+              role: responseMessage.role,
+              parts: responseMessage.parts,
+            })
+            .onConflictDoNothing();
+          await db
+            .update(documents)
+            .set({ updatedAt: new Date() })
+            .where(eq(documents.id, documentId));
+          revalidatePath("/", "layout");
+        } catch (error) {
+          console.error("[api/chat] Error al guardar la respuesta:", error);
+        }
       },
     }),
   });
