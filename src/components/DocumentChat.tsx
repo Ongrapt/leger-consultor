@@ -1,64 +1,128 @@
 "use client";
 
 import { useChat } from "@ai-sdk/react";
-import { DefaultChatTransport, type FileUIPart, type UIMessage } from "ai";
-import { upload } from "@vercel/blob/client";
-import { PDFDocument } from "pdf-lib";
-import { useRef, useState } from "react";
+import { DefaultChatTransport, type UIMessage } from "ai";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useEffect, useRef, useState, useTransition } from "react";
 import { Streamdown } from "streamdown";
 import "streamdown/styles.css";
+import FuentesPanel from "@/components/FuentesPanel";
+import ItemMenu from "@/components/ItemMenu";
+import ModeToggle from "@/components/ModeToggle";
+import RenombrarModal from "@/components/RenombrarModal";
 import WatchBackground from "@/components/WatchBackground";
-import { pathnameParaDocumento, urlProxyDeArchivo } from "@/lib/blob";
+import { crearChat } from "@/lib/actions/chats";
+import { archivarDocumento, eliminarDocumento } from "@/lib/actions/documentos";
+import { tomarMensajeInicial } from "@/lib/pending-message";
+import type { ChatMode } from "@/lib/types";
 import {
   LIMITE_CONSULTAS_GRATIS,
   LIMITE_DOCUMENTOS_GRATIS,
   LIMITE_PAGINAS_PDF,
-  puedeSubirDocumentos as puedeSubirDocumentosSegunUso,
   type Uso,
 } from "@/lib/usage-shared";
 
+type Fuente = { id: string; nombreArchivo: string; paginas: number | null };
+type ChatVinculado = { id: string; title: string; updatedAt: Date };
+
 export default function DocumentChat({
+  chatId,
   documentId,
+  titulo,
   initialMessages,
   uso,
-  documentoYaAnalizado,
+  fuentes,
+  chats,
+  tieneFuentes,
+  puedeAgregarFuente,
 }: {
+  chatId: string;
   documentId: string;
+  titulo: string;
   initialMessages: UIMessage[];
   uso: Uso;
-  documentoYaAnalizado: boolean;
+  fuentes: Fuente[];
+  chats: ChatVinculado[];
+  tieneFuentes: boolean;
+  puedeAgregarFuente: boolean;
 }) {
+  const router = useRouter();
+  const [, startTransition] = useTransition();
   const { messages, sendMessage, status, error } = useChat({
-    id: documentId,
+    id: chatId,
     messages: initialMessages,
     transport: new DefaultChatTransport({
       api: "/api/chat",
-      body: { documentId },
+      body: { chatId },
     }),
     onError: (error) => {
       console.error("[chat] Error en la petición:", error);
     },
   });
   const [input, setInput] = useState("");
-  const [archivos, setArchivos] = useState<FileList | null>(null);
-  const [subiendo, setSubiendo] = useState(false);
   const [copiedId, setCopiedId] = useState<string | null>(null);
-  const [errorArchivo, setErrorArchivo] = useState<string | null>(null);
-  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [renombrando, setRenombrando] = useState(false);
+  const [mostrarFuentes, setMostrarFuentes] = useState(true);
+  // El composer de inicio deja el mensaje (y el modo elegido) en
+  // sessionStorage antes de redirigir aquí, porque crearDocumento hace el
+  // redirect del lado del servidor y no puede devolver esos datos como prop.
+  const [mensajePendiente] = useState(() =>
+    initialMessages.length === 0 ? tomarMensajeInicial() : null,
+  );
+  const [modoElegido, setModoElegido] = useState<ChatMode>(mensajePendiente?.modo ?? "chat");
+  // Un documento con fuentes ya es un análisis: no se puede "bajar" a chat.
+  const mode: ChatMode = tieneFuentes ? "analisis" : modoElegido;
+  const yaEnvioMensajePendiente = useRef(false);
 
-  const puedeSubirDocumentos = puedeSubirDocumentosSegunUso(uso, documentoYaAnalizado);
+  useEffect(() => {
+    if (!mensajePendiente || yaEnvioMensajePendiente.current) return;
+    yaEnvioMensajePendiente.current = true;
+    sendMessage({ text: mensajePendiente.texto });
+  }, [mensajePendiente, sendMessage]);
+
+  function handleArchivarDocumento() {
+    startTransition(async () => {
+      await archivarDocumento(documentId);
+      router.push("/");
+    });
+  }
+
+  function handleEliminarDocumento() {
+    const confirmado = window.confirm(
+      `¿Eliminar "${titulo}"? Se perderá toda su conversación y fuentes.`,
+    );
+    if (!confirmado) return;
+    startTransition(async () => {
+      await eliminarDocumento(documentId);
+      router.push("/");
+    });
+  }
+
+  function handleNuevoChat() {
+    startTransition(async () => {
+      await crearChat(documentId, `Conversación ${chats.length + 1}`);
+    });
+  }
+
   const consultasRestantes = Math.max(
     0,
     LIMITE_CONSULTAS_GRATIS - uso.consultasUsadas,
   );
-  const documentosRestantes = Math.max(
-    0,
-    LIMITE_DOCUMENTOS_GRATIS - uso.documentosAnalizados,
-  );
   const limiteAlcanzado = uso.plan === "free" && consultasRestantes <= 0;
 
-  const isBusy = status === "submitted" || status === "streaming" || subiendo;
-  const hayArchivos = !!archivos && archivos.length > 0;
+  const isBusy = status === "submitted" || status === "streaming";
+  const ultimoMensaje = messages.at(-1);
+  const textoUltimoMensaje =
+    ultimoMensaje?.parts
+      .filter((p): p is Extract<typeof p, { type: "text" }> => p.type === "text")
+      .map((p) => p.text)
+      .join("") ?? "";
+  // No basta con status === "submitted" (ventana muy corta): el SDK crea el
+  // mensaje del asistente vacío en cuanto pasa a "streaming", así que hay
+  // que seguir mostrando los puntos hasta que ese mensaje tenga texto real.
+  const esperandoRespuesta =
+    isBusy && (ultimoMensaje?.role !== "assistant" || textoUltimoMensaje.trim() === "");
   const mensajeError = error
     ? (() => {
         try {
@@ -80,80 +144,79 @@ export default function DocumentChat({
     setTimeout(() => setCopiedId((current) => (current === message.id ? null : current)), 1500);
   }
 
-  async function handleSubmit(e: React.FormEvent) {
+  function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if ((!input.trim() && !hayArchivos) || isBusy || limiteAlcanzado) return;
-    if (hayArchivos && !puedeSubirDocumentos) return;
-
-    if (hayArchivos) {
-      const archivo = archivos![0];
-      if (archivo.type === "application/pdf") {
-        const doc = await PDFDocument.load(await archivo.arrayBuffer(), {
-          ignoreEncryption: true,
-        });
-        const paginas = doc.getPageCount();
-        if (paginas > LIMITE_PAGINAS_PDF) {
-          setErrorArchivo(
-            `Este PDF tiene ${paginas} páginas; el límite es ${LIMITE_PAGINAS_PDF} para mantener la precisión del análisis.`,
-          );
-          return;
-        }
-      }
-    }
-    setErrorArchivo(null);
-
-    let fileParts: FileUIPart[] | undefined;
-    if (hayArchivos) {
-      setSubiendo(true);
-      try {
-        fileParts = await Promise.all(
-          Array.from(archivos!).map(async (file) => {
-            const resultado = await upload(
-              pathnameParaDocumento(documentId, file.name),
-              file,
-              {
-                access: "private",
-                handleUploadUrl: "/api/upload",
-                clientPayload: JSON.stringify({ documentId }),
-              },
-            );
-            return {
-              type: "file",
-              url: urlProxyDeArchivo(resultado.pathname),
-              mediaType: resultado.contentType,
-              filename: file.name,
-            } satisfies FileUIPart;
-          }),
-        );
-      } catch (error) {
-        console.error("[upload] Error al subir el archivo:", error);
-        setErrorArchivo(
-          error instanceof Error ? error.message : "Error al subir el archivo",
-        );
-        return;
-      } finally {
-        setSubiendo(false);
-      }
-    }
-
-    sendMessage({ text: input, files: fileParts });
+    if (!input.trim() || isBusy || limiteAlcanzado) return;
+    sendMessage({ text: input });
     setInput("");
-    setArchivos(null);
-    if (fileInputRef.current) fileInputRef.current.value = "";
   }
+
+  const esLanding = messages.length === 0;
+  const otrosChats = chats.filter((c) => c.id !== chatId);
 
   return (
     <WatchBackground className="flex h-full flex-col items-center">
+      <div className="flex w-full max-w-3xl shrink-0 items-center justify-between px-4 pt-4">
+        <h1 className="truncate text-sm font-medium text-foreground/60">{titulo}</h1>
+        <ItemMenu
+          onRename={() => setRenombrando(true)}
+          onArchive={handleArchivarDocumento}
+          onDelete={handleEliminarDocumento}
+        />
+      </div>
+      {renombrando && (
+        <RenombrarModal
+          documentId={documentId}
+          tituloActual={titulo}
+          onClose={() => setRenombrando(false)}
+        />
+      )}
+
       <main className="flex w-full max-w-3xl flex-1 flex-col overflow-y-auto px-4">
-        {messages.length === 0 ? (
-          <div className="flex flex-1 flex-col items-center justify-center gap-2 text-center">
-            <p className="text-2xl font-medium text-foreground/80">
-              ¿En qué puedo ayudarte hoy?
-            </p>
-            <p className="max-w-md text-sm text-foreground/50">
-              Consultor de Procesos Administrativos en Condominio, basado en
-              la Ley de Propiedad en Condominio de Yucatán.
-            </p>
+        {esLanding ? (
+          <div className="flex flex-1 flex-col justify-center gap-6 py-6">
+            <div className="flex flex-col items-center gap-2 text-center">
+              <p className="text-2xl font-medium text-foreground/80">
+                ¿En qué puedo ayudarte hoy?
+              </p>
+              <p className="max-w-md text-sm text-foreground/50">
+                Consultor de Procesos Administrativos en Condominio, basado en
+                la Ley de Propiedad en Condominio de Yucatán.
+              </p>
+            </div>
+
+            {mode === "analisis" && (
+              <FuentesPanel documentId={documentId} fuentes={fuentes} puedeAgregar={puedeAgregarFuente} />
+            )}
+
+            {otrosChats.length > 0 && (
+              <div className="flex flex-col gap-1.5">
+                <p className="text-xs font-medium uppercase tracking-wide text-foreground/40">
+                  Recientes
+                </p>
+                <ul className="flex flex-col gap-1">
+                  {otrosChats.map((chat) => (
+                    <li key={chat.id}>
+                      <Link
+                        href={`/documentos/${documentId}?chat=${chat.id}`}
+                        className="block truncate rounded-xl border border-border px-3 py-2 text-sm text-foreground/70 transition-colors hover:bg-surface hover:text-foreground"
+                      >
+                        {chat.title}
+                      </Link>
+                    </li>
+                  ))}
+                  <li>
+                    <button
+                      type="button"
+                      onClick={handleNuevoChat}
+                      className="w-full rounded-xl border border-dashed border-border px-3 py-2 text-left text-sm text-foreground/40 transition-colors hover:bg-surface hover:text-foreground"
+                    >
+                      + Nuevo chat
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            )}
           </div>
         ) : (
           <div className="flex flex-col gap-6 py-6">
@@ -184,30 +247,6 @@ export default function DocumentChat({
                         >
                           {part.text}
                         </Streamdown>
-                      );
-                    }
-                    if (part.type === "file") {
-                      const esImagen = part.mediaType.startsWith("image/");
-                      return (
-                        <div key={key} className="mb-2">
-                          {esImagen ? (
-                            // eslint-disable-next-line @next/next/no-img-element
-                            <img
-                              src={part.url}
-                              alt={part.filename ?? "Imagen adjunta"}
-                              className="max-h-48 rounded-lg border border-border"
-                            />
-                          ) : (
-                            <a
-                              href={part.url}
-                              target="_blank"
-                              rel="noreferrer"
-                              className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-background/50 px-2.5 py-1 text-xs text-foreground/70 hover:text-foreground"
-                            >
-                              📄 {part.filename ?? "Documento adjunto"}
-                            </a>
-                          )}
-                        </div>
                       );
                     }
                     return null;
@@ -268,7 +307,7 @@ export default function DocumentChat({
                 </button>
               </div>
             ))}
-            {status === "submitted" && (
+            {esperandoRespuesta && (
               <div className="flex justify-start px-1 py-2" aria-label="Leger está escribiendo">
                 <span
                   className="h-1.5 w-1.5 animate-bounce rounded-full bg-foreground/40"
@@ -289,104 +328,56 @@ export default function DocumentChat({
       </main>
 
       <div className="w-full max-w-3xl px-4 pb-6 pt-2">
-        {(mensajeError || errorArchivo || limiteAlcanzado) && (
+        {(mensajeError || limiteAlcanzado) && (
           <div className="mb-2 rounded-xl border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-xs text-amber-600">
             {mensajeError ??
-              errorArchivo ??
               `Alcanzaste el límite de ${LIMITE_CONSULTAS_GRATIS} consultas gratis. La suscripción estará disponible pronto.`}
           </div>
         )}
-        {!limiteAlcanzado && uso.plan === "free" && (
-          <p className="mb-1.5 px-1 text-xs text-foreground/40">
-            {consultasRestantes} de {LIMITE_CONSULTAS_GRATIS} consultas gratis restantes
-            {!documentoYaAnalizado &&
-              ` · ${documentosRestantes} de ${LIMITE_DOCUMENTOS_GRATIS} análisis de documento gratis`}
-          </p>
-        )}
-        {hayArchivos && (
-          <div className="mb-2 flex flex-wrap gap-1.5">
-            {Array.from(archivos!).map((f, i) => (
-              <span
-                key={`${f.name}-${i}`}
-                className="inline-flex items-center gap-1 rounded-lg border border-border bg-surface px-2 py-1 text-xs text-foreground/70"
-              >
-                📎 {f.name}
-              </span>
-            ))}
-          </div>
-        )}
-        <form
-          onSubmit={handleSubmit}
-          className="flex items-end gap-2 rounded-3xl border border-border bg-surface px-4 py-3 shadow-sm"
-        >
-          <input
-            ref={fileInputRef}
-            type="file"
-            accept="application/pdf,image/*"
-            onChange={(e) => {
-              setArchivos(e.target.files);
-              setErrorArchivo(null);
-            }}
-            disabled={isBusy || !puedeSubirDocumentos}
-            className="hidden"
-            id="file-upload"
-          />
-          <label
-            htmlFor="file-upload"
-            aria-label={
-              puedeSubirDocumentos
-                ? `Adjuntar un acta del régimen (PDF, máx. ${LIMITE_PAGINAS_PDF} páginas, o imagen)`
-                : "Ya usaste tu análisis de documento gratis: disponible de nuevo con suscripción"
-            }
-            title={
-              puedeSubirDocumentos
-                ? `Un archivo por análisis, máx. ${LIMITE_PAGINAS_PDF} páginas`
-                : "Ya usaste tu análisis de documento gratis. La suscripción estará disponible pronto."
-            }
-            className={`flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center rounded-full text-foreground/50 transition-colors hover:bg-background/50 hover:text-foreground/80 ${
-              isBusy || !puedeSubirDocumentos ? "pointer-events-none opacity-40" : ""
-            }`}
-          >
-            {puedeSubirDocumentos ? (
+
+        {!esLanding && mode === "analisis" && (
+          <div className="mb-2">
+            <button
+              type="button"
+              onClick={() => setMostrarFuentes((v) => !v)}
+              className="flex items-center gap-1.5 rounded-lg border border-border px-2.5 py-1.5 text-xs font-medium text-foreground/70 transition-colors hover:bg-surface"
+            >
+              <span aria-hidden="true">📎</span>
+              {fuentes.length > 0
+                ? `${fuentes.length} ${fuentes.length === 1 ? "documento" : "documentos"} · agregar más`
+                : "Agregar documento"}
               <svg
                 viewBox="0 0 24 24"
                 fill="none"
-                className="h-4 w-4"
+                className={`h-3 w-3 transition-transform ${mostrarFuentes ? "rotate-90" : ""}`}
                 aria-hidden="true"
               >
                 <path
-                  d="M21.44 11.05l-9.19 9.19a5 5 0 01-7.07-7.07l9.19-9.19a3.5 3.5 0 014.95 4.95l-9.2 9.19a2 2 0 01-2.83-2.83l8.49-8.48"
+                  d="M9 6l6 6-6 6"
                   stroke="currentColor"
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
                 />
               </svg>
-            ) : (
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                className="h-4 w-4"
-                aria-hidden="true"
-              >
-                <rect
-                  x="5"
-                  y="11"
-                  width="14"
-                  height="9"
-                  rx="2"
-                  stroke="currentColor"
-                  strokeWidth="2"
+            </button>
+            {mostrarFuentes && (
+              <div className="mt-1.5">
+                <FuentesPanel
+                  documentId={documentId}
+                  fuentes={fuentes}
+                  puedeAgregar={puedeAgregarFuente}
+                  onSubido={() => setMostrarFuentes(false)}
                 />
-                <path
-                  d="M8 11V8a4 4 0 018 0v3"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                />
-              </svg>
+              </div>
             )}
-          </label>
+          </div>
+        )}
+
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col gap-2 rounded-3xl border border-border bg-surface px-4 py-3 shadow-sm"
+        >
           <input
             value={input}
             onChange={(e) => setInput(e.target.value)}
@@ -396,29 +387,47 @@ export default function DocumentChat({
                 ? "Alcanzaste el límite de consultas gratis"
                 : "Escribe tu mensaje a Leger…"
             }
-            className="flex-1 bg-transparent text-[15px] text-foreground placeholder:text-foreground/40 outline-none disabled:opacity-60"
+            className="w-full bg-transparent text-[15px] text-foreground placeholder:text-foreground/40 outline-none disabled:opacity-60"
           />
-          <button
-            type="submit"
-            disabled={isBusy || limiteAlcanzado || (!input.trim() && !hayArchivos)}
-            aria-label="Enviar"
-            className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-foreground text-background transition-opacity disabled:opacity-30"
-          >
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              className="h-4 w-4"
-              aria-hidden="true"
-            >
-              <path
-                d="M12 19V5M12 5L5 12M12 5l7 7"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </button>
+          <div className="flex items-center justify-between gap-2">
+            <ModeToggle mode={mode} onChange={setModoElegido} analisisBloqueado={tieneFuentes} />
+            <div className="flex items-center gap-2">
+              {mode === "chat" ? (
+                uso.plan === "free" && (
+                  <span className="text-xs text-foreground/40">
+                    {consultasRestantes} / {LIMITE_CONSULTAS_GRATIS} gratis
+                  </span>
+                )
+              ) : (
+                <span className="hidden text-xs text-foreground/40 sm:inline">
+                  {puedeAgregarFuente
+                    ? `${LIMITE_DOCUMENTOS_GRATIS} documento gratis · hasta ${LIMITE_PAGINAS_PDF} páginas`
+                    : "Suscripción mensual próximamente"}
+                </span>
+              )}
+              <button
+                type="submit"
+                disabled={isBusy || limiteAlcanzado || !input.trim()}
+                aria-label="Enviar"
+                className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-foreground text-background transition-opacity disabled:opacity-30"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  className="h-4 w-4"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M12 19V5M12 5L5 12M12 5l7 7"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
         </form>
       </div>
     </WatchBackground>

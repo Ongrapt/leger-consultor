@@ -1,4 +1,3 @@
-import type { UIMessage } from "ai";
 import data from "../../../patrones_riesgo.json";
 
 interface Patron {
@@ -28,15 +27,6 @@ interface CatalogoPatrones {
 }
 
 const CATALOGO = data as CatalogoPatrones;
-
-/**
- * El propio catálogo exige que la activación del modo auditoría viva en
- * código (no sólo en el prompt): si hay un adjunto en la conversación, se
- * ofrece la auditoría; el consentimiento explícito del usuario lo decide el modelo.
- */
-export function hayAdjuntoEnMensajes(messages: UIMessage[]): boolean {
-  return messages.some((m) => m.parts.some((p) => p.type === "file"));
-}
 
 export function formatearBloquePatrones(): string {
   const patrones = CATALOGO.patrones

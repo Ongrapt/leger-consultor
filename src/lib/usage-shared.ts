@@ -1,13 +1,16 @@
-export const LIMITE_CONSULTAS_GRATIS = 10;
+export const LIMITE_CONSULTAS_GRATIS = 2;
 
-// En modo gratis solo se puede analizar un documento; documentos adicionales
-// requieren suscripción. Adjuntar más archivos al mismo documento ya
-// analizado no cuenta contra este límite.
+// En modo gratis solo se puede subir un archivo, de por vida (sin importar
+// en cuántos análisis). Con suscripción no aplica: solo rigen los topes de
+// páginas por archivo y por análisis, iguales para todos.
 export const LIMITE_DOCUMENTOS_GRATIS = 1;
 
-// Máximo de páginas por PDF adjunto: por encima de esto el modelo pierde
+// Máximo de páginas por archivo fuente: por encima de esto el modelo pierde
 // precisión al analizar el documento completo.
 export const LIMITE_PAGINAS_PDF = 20;
+
+// Máximo de páginas sumando todos los archivos fuente de un mismo análisis.
+export const LIMITE_PAGINAS_ANALISIS = 100;
 
 export type Uso = {
   plan: "free" | "subscription";
@@ -15,8 +18,6 @@ export type Uso = {
   documentosAnalizados: number;
 };
 
-export function puedeSubirDocumentos(uso: Uso, documentoYaAnalizado: boolean): boolean {
-  if (uso.plan === "subscription") return true;
-  if (documentoYaAnalizado) return true;
-  return uso.documentosAnalizados < LIMITE_DOCUMENTOS_GRATIS;
+export function puedeSubirDocumentos(uso: Uso): boolean {
+  return uso.plan === "subscription" || uso.documentosAnalizados < LIMITE_DOCUMENTOS_GRATIS;
 }

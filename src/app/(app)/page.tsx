@@ -2,12 +2,14 @@ import { auth } from "@clerk/nextjs/server";
 import { SignUpButton } from "@clerk/nextjs";
 import Link from "next/link";
 import WatchBackground from "@/components/WatchBackground";
-import NuevaConsultaButton from "@/components/NuevaConsultaButton";
-import NuevoAnalisisModal from "@/components/NuevoAnalisisModal";
+import InicioComposer from "@/components/InicioComposer";
+import PreguntasDemo from "@/components/PreguntasDemo";
+import { obtenerUso } from "@/lib/usage";
 import { LIMITE_CONSULTAS_GRATIS } from "@/lib/usage-shared";
 
 export default async function InicioPage() {
   const { userId } = await auth();
+  const uso = userId ? await obtenerUso(userId) : null;
 
   return (
     <WatchBackground className="flex h-full flex-col items-center justify-center px-4">
@@ -17,13 +19,12 @@ export default async function InicioPage() {
         </p>
         <p className="max-w-md text-sm text-foreground/50">
           Consultor de Procesos Administrativos en Condominio, basado en la
-          Ley de Propiedad en Condominio de Yucatán. Crea un nuevo análisis
-          para empezar, por ejemplo sobre un Acta del Régimen.
+          Ley de Propiedad en Condominio de Yucatán. Crea un nuevo chat para
+          empezar, por ejemplo sobre un Acta del Régimen.
         </p>
-        {userId ? (
-          <div className="mt-2 flex gap-2">
-            <NuevoAnalisisModal />
-            <NuevaConsultaButton />
+        {userId && uso ? (
+          <div className="mt-4 w-full max-w-2xl px-4">
+            <InicioComposer uso={uso} />
           </div>
         ) : (
           <div className="mt-2 flex flex-col items-center gap-2">
@@ -41,6 +42,7 @@ export default async function InicioPage() {
                 Inicia sesión
               </Link>
             </p>
+            <PreguntasDemo />
           </div>
         )}
       </div>

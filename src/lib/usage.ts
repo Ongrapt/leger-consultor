@@ -1,7 +1,7 @@
 import "server-only";
 import { eq, sql } from "drizzle-orm";
 import { getDb } from "@/lib/db";
-import { documents, userUsage } from "@/lib/db/schema";
+import { userUsage } from "@/lib/db/schema";
 import { LIMITE_CONSULTAS_GRATIS, puedeSubirDocumentos, type Uso } from "@/lib/usage-shared";
 
 export { LIMITE_CONSULTAS_GRATIS, puedeSubirDocumentos };
@@ -49,24 +49,7 @@ export async function registrarConsulta(userId: string): Promise<void> {
     });
 }
 
-export async function documentoYaAnalizado(documentId: string): Promise<boolean> {
-  const [fila] = await getDb()
-    .select({ archivoAnalizado: documents.archivoAnalizado })
-    .from(documents)
-    .where(eq(documents.id, documentId))
-    .limit(1);
-  return fila?.archivoAnalizado ?? false;
-}
-
-export async function registrarAnalisisDocumento(
-  userId: string,
-  documentId: string,
-): Promise<void> {
-  await getDb()
-    .update(documents)
-    .set({ archivoAnalizado: true })
-    .where(eq(documents.id, documentId));
-
+export async function registrarArchivoAnalizado(userId: string): Promise<void> {
   await getDb()
     .insert(userUsage)
     .values({ userId, documentosAnalizados: 1 })
