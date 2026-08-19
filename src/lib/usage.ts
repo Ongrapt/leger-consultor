@@ -37,6 +37,11 @@ export function tieneConsultasDisponibles(uso: Uso): boolean {
 }
 
 export async function registrarConsulta(userId: string): Promise<void> {
+  // Mismo criterio que obtenerUso: fuera de producción no se lleva la
+  // cuenta real, para que probar en local/preview no contamine el límite
+  // gratis de un usuario real.
+  if (process.env.VERCEL_ENV !== "production") return;
+
   await getDb()
     .insert(userUsage)
     .values({ userId, consultasUsadas: 1 })
@@ -50,6 +55,8 @@ export async function registrarConsulta(userId: string): Promise<void> {
 }
 
 export async function registrarArchivoAnalizado(userId: string): Promise<void> {
+  if (process.env.VERCEL_ENV !== "production") return;
+
   await getDb()
     .insert(userUsage)
     .values({ userId, documentosAnalizados: 1 })
