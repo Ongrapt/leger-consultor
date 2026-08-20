@@ -43,6 +43,13 @@ export const documentFuentes = pgTable(
     url: text("url").notNull(),
     contentType: text("content_type").notNull(),
     paginas: integer("paginas"),
+    // File ID devuelto por la Files API de Anthropic al subir el archivo la
+    // primera vez (ver resolverFuentesParaModelo en blob-server.ts). Una vez
+    // presente, el archivo se referencia por este id en cada llamada al
+    // modelo en vez de reenviar el contenido completo en base64 — evita
+    // pegar contra el límite de tamaño de request de la API con documentos
+    // escaneados grandes.
+    anthropicFileId: text("anthropic_file_id"),
     createdAt: timestamp("created_at").notNull().defaultNow(),
   },
   (table) => [index("document_fuentes_document_id_idx").on(table.documentId)],

@@ -1,8 +1,12 @@
 import "server-only";
 import { get } from "@vercel/blob";
 import { PDFDocument } from "pdf-lib";
-import type { FileUIPart } from "ai";
+import { uploadFile, type FileUIPart } from "ai";
+import { anthropic } from "@ai-sdk/anthropic";
+import { eq } from "drizzle-orm";
 import { ARCHIVOS_PREFIX } from "@/lib/blob";
+import { getDb } from "@/lib/db";
+import { documentFuentes } from "@/lib/db/schema";
 
 async function archivoComoBuffer(pathname: string): Promise<{ buffer: Buffer; contentType: string } | null> {
   const resultado = await get(pathname, { access: "private" });
@@ -32,27 +36,51 @@ export async function contarPaginas(url: string): Promise<number | null> {
 
 /**
  * Convierte las fuentes de un análisis (tabla document_fuentes) en partes de
- * archivo listas para inyectarse en la llamada al modelo, con el contenido
- * real como data: URL.
+ * archivo listas para inyectarse en la llamada al modelo.
+ *
+ * Cada archivo se sube UNA sola vez a la Files API de Anthropic (se persiste
+ * su file_id en document_fuentes.anthropic_file_id); en cada llamada al
+ * modelo se referencia por ese id en vez de reenviar el archivo completo en
+ * base64. Con documentos escaneados grandes, reenviar el base64 en cada
+ * mensaje del chat puede superar el límite de tamaño de request de la API
+ * (error 413 "request_too_large"); referenciarlo por id evita eso.
  */
 export async function resolverFuentesParaModelo(
-  fuentes: { url: string; contentType: string; nombreArchivo: string }[],
+  fuentes: { id: string; url: string; contentType: string; nombreArchivo: string; anthropicFileId: string | null }[],
 ): Promise<FileUIPart[]> {
   const partes = await Promise.all(
     fuentes.map(async (fuente): Promise<FileUIPart | null> => {
       if (!fuente.url.startsWith(ARCHIVOS_PREFIX)) return null;
-      const pathname = fuente.url.slice(ARCHIVOS_PREFIX.length);
-      const archivo = await archivoComoBuffer(pathname);
-      if (!archivo) return null;
-      const dataUrl = `data:${archivo.contentType};base64,${archivo.buffer.toString("base64")}`;
+
+      let anthropicFileId = fuente.anthropicFileId;
+      if (!anthropicFileId) {
+        const pathname = fuente.url.slice(ARCHIVOS_PREFIX.length);
+        const archivo = await archivoComoBuffer(pathname);
+        if (!archivo) return null;
+
+        const { providerReference } = await uploadFile({
+          api: anthropic.files(),
+          data: archivo.buffer,
+          mediaType: archivo.contentType,
+          filename: fuente.nombreArchivo,
+        });
+        anthropicFileId = providerReference.anthropic;
+
+        await getDb()
+          .update(documentFuentes)
+          .set({ anthropicFileId })
+          .where(eq(documentFuentes.id, fuente.id));
+      }
+
       return {
         type: "file",
-        url: dataUrl,
+        url: "",
         mediaType: fuente.contentType,
         filename: fuente.nombreArchivo,
-        // El mismo archivo se reenvía en cada turno; se marca para caché de
-        // Anthropic (Prompt Caching) para no volver a pagar/procesar esos
-        // tokens completos en cada mensaje.
+        providerReference: { anthropic: anthropicFileId },
+        // El archivo se referencia por file_id en cada turno; se marca para
+        // caché de Anthropic (Prompt Caching) para no volver a pagar/procesar
+        // esos tokens completos en cada mensaje.
         providerMetadata: {
           anthropic: { cacheControl: { type: "ephemeral", ttl: "1h" } },
         },
