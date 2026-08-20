@@ -159,9 +159,11 @@ async function manejarPost(req: Request) {
   // todo el caché de archivos sin necesidad.
   const fuentes = await db
     .select({
+      id: documentFuentes.id,
       url: documentFuentes.url,
       contentType: documentFuentes.contentType,
       nombreArchivo: documentFuentes.nombreArchivo,
+      anthropicFileId: documentFuentes.anthropicFileId,
     })
     .from(documentFuentes)
     .where(eq(documentFuentes.documentId, documentId))
@@ -195,10 +197,25 @@ async function manejarPost(req: Request) {
     costoUsd: number;
   } | null = null;
 
+  // Breakpoint de caché al final del historial: sin esto, cada turno
+  // reprocesa TODA la conversación acumulada a precio completo (solo el
+  // system prompt y las fuentes llevaban cacheControl). Marcando el último
+  // mensaje, el próximo turno lee todo lo anterior desde caché (0.1x) en
+  // vez de precio completo — el resto del historial no cambia entre
+  // llamadas, así que el prefijo sigue siendo válido para Anthropic.
+  const mensajesModelo = await convertToModelMessages(mensajesParaModelo);
+  const ultimoMensajeModelo = mensajesModelo.at(-1);
+  if (ultimoMensajeModelo) {
+    ultimoMensajeModelo.providerOptions = {
+      ...ultimoMensajeModelo.providerOptions,
+      anthropic: { cacheControl: CACHE_EFIMERO },
+    };
+  }
+
   const result = streamText({
     model: anthropic("claude-sonnet-5"),
     instructions: construirInstructions(messages, enModoAuditoria),
-    messages: await convertToModelMessages(mensajesParaModelo),
+    messages: mensajesModelo,
     onError: ({ error }) => {
       console.error("[api/chat] Error del modelo:", error);
     },
