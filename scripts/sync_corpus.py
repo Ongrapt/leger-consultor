@@ -1,7 +1,16 @@
-"""Parsea el corpus legal real (corpus_ley_condominio_yucatan.md, OCR de la
-Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán) y lo
-exporta a JSON dentro del proyecto Next.js, para que route.ts pueda
-importarlo sin depender de un runtime Python en producción.
+"""Parsea las fuentes legales en Markdown del repo (OCR/transcripción fiel,
+segmentada por artículo con tags <articulo n="X">) y las exporta a un único
+JSON dentro del proyecto Next.js, para que route.ts pueda importarlo sin
+depender de un runtime Python en producción.
+
+Fuentes soportadas:
+  - corpus_ley_condominio_yucatan.md: cada artículo trae, al final de su
+    bloque, líneas "Capítulo"/"Sección" que marcan bajo qué capítulo/sección
+    cae el SIGUIENTE artículo (ver extraer_marcadores_finales).
+  - corpus_codigo_civil_yucatan.md: no trae esos marcadores inline; el propio
+    archivo declara en su manifiesto qué rangos de artículos corresponden a
+    qué capítulo/sección (ver RANGOS_CAPITULO_CODIGO_CIVIL), así que aquí el
+    capítulo/sección se asigna por rango de número de artículo.
 
 Uso:
     .venv/bin/python scripts/sync_corpus.py
@@ -12,19 +21,24 @@ import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-SRC_MD = ROOT / "corpus_ley_condominio_yucatan.md"
 OUT_PATH = ROOT / "src" / "lib" / "corpus" / "data.json"
-
-LEY = "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán"
-
-# Artículos citados dentro del decreto de reforma (p. ej. el Artículo 699 del
-# Código Civil, transcrito al final del documento) que NO pertenecen a la Ley
-# de Condominio y deben excluirse del corpus para no mezclar fuentes legales.
-ARTICULOS_FUERA_DE_ALCANCE = {"699"}
 
 ARTICULO_BLOQUE_RE = re.compile(
     r'<articulo n="(\d+)">\s*\n(.*?)\n\s*</articulo>', re.DOTALL
 )
+
+# --------------------------------------------------------------------------
+# Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán
+# --------------------------------------------------------------------------
+
+LEY_CONDOMINIO = "Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán"
+SRC_CONDOMINIO = ROOT / "corpus_ley_condominio_yucatan.md"
+
+# Artículos citados dentro del decreto de reforma (p. ej. el Artículo 699 del
+# Código Civil, transcrito al final del documento) que NO pertenecen a la Ley
+# de Condominio y deben excluirse de esta fuente para no mezclar leyes.
+ARTICULOS_FUERA_DE_ALCANCE_CONDOMINIO = {"699"}
+
 DECRETO_TRANSITORIO_RE = re.compile(
     r"\n(Artículo (?:primero|segundo|tercero|cuarto|quinto)\..*)$",
     re.DOTALL,
@@ -71,8 +85,8 @@ def extraer_marcadores_finales(lineas: list[str]) -> tuple[list[str], list[tuple
     return texto_lineas, marcadores
 
 
-def main() -> None:
-    texto_fuente = SRC_MD.read_text(encoding="utf-8")
+def parsear_ley_condominio() -> list[dict]:
+    texto_fuente = SRC_CONDOMINIO.read_text(encoding="utf-8")
 
     articulos = []
     estado = {
@@ -85,7 +99,7 @@ def main() -> None:
     for match in ARTICULO_BLOQUE_RE.finditer(texto_fuente):
         numero, cuerpo = match.group(1), match.group(2).strip()
 
-        if numero in ARTICULOS_FUERA_DE_ALCANCE:
+        if numero in ARTICULOS_FUERA_DE_ALCANCE_CONDOMINIO:
             continue
 
         cuerpo = DECRETO_TRANSITORIO_RE.sub("", cuerpo).rstrip()
@@ -106,7 +120,7 @@ def main() -> None:
             {
                 "id_vector": f"YUC_CONDO_ART_{numero}",
                 "meta": {
-                    "ley": LEY,
+                    "ley": LEY_CONDOMINIO,
                     "capitulo": meta_capitulo,
                     "nombre_capitulo": meta_nombre_capitulo,
                     "seccion": meta_seccion,
@@ -127,6 +141,73 @@ def main() -> None:
             elif tipo == "seccion":
                 estado["seccion"] = valor
                 estado["nombre_seccion"] = titulo_marcador
+
+    return articulos
+
+
+# --------------------------------------------------------------------------
+# Código Civil del Estado de Yucatán
+# --------------------------------------------------------------------------
+
+LEY_CODIGO_CIVIL = "Código Civil del Estado de Yucatán"
+SRC_CODIGO_CIVIL = ROOT / "corpus_codigo_civil_yucatan.md"
+
+# El archivo fuente no trae marcadores inline de capítulo/sección (a
+# diferencia de la Ley de Condominio); en cambio, declara en su manifiesto
+# qué rango de artículos corresponde a cada capítulo. Si se agregan más
+# secciones al .md, hay que sumar su rango aquí o el artículo queda sin
+# capítulo asignado (ver meta_capitulo_codigo_civil).
+RANGOS_CAPITULO_CODIGO_CIVIL = [
+    (680, 722, "II", "De la Copropiedad (Libro Segundo, Título Tercero)", None, None),
+    (1889, 1904, "X", "De las Asociaciones (Libro Tercero, Título Sexto)", "Séptima", "De las Asociaciones"),
+]
+
+
+def meta_capitulo_codigo_civil(numero: int) -> tuple[str, str, str | None, str | None]:
+    for desde, hasta, capitulo, nombre_capitulo, seccion, nombre_seccion in RANGOS_CAPITULO_CODIGO_CIVIL:
+        if desde <= numero <= hasta:
+            return capitulo, nombre_capitulo, seccion, nombre_seccion
+    raise ValueError(
+        f"Artículo {numero} del Código Civil sin capítulo asignado; "
+        "añade su rango a RANGOS_CAPITULO_CODIGO_CIVIL"
+    )
+
+
+def parsear_codigo_civil() -> list[dict]:
+    if not SRC_CODIGO_CIVIL.exists():
+        return []
+
+    texto_fuente = SRC_CODIGO_CIVIL.read_text(encoding="utf-8")
+
+    articulos = []
+    for match in ARTICULO_BLOQUE_RE.finditer(texto_fuente):
+        numero, cuerpo = match.group(1), match.group(2).strip()
+        capitulo, nombre_capitulo, seccion, nombre_seccion = meta_capitulo_codigo_civil(int(numero))
+
+        articulos.append(
+            {
+                "id_vector": f"YUC_CIVIL_ART_{numero}",
+                "meta": {
+                    "ley": LEY_CODIGO_CIVIL,
+                    "capitulo": capitulo,
+                    "nombre_capitulo": nombre_capitulo,
+                    "seccion": seccion,
+                    "nombre_seccion": nombre_seccion,
+                    "articulo": int(numero),
+                    # El texto de este archivo no trae un título separado
+                    # del cuerpo (el artículo empieza directo con "Artículo
+                    # N.- ..."), a diferencia de la Ley de Condominio.
+                    "titulo": None,
+                },
+                "texto_original": cuerpo,
+            }
+        )
+
+    return articulos
+
+
+def main() -> None:
+    articulos = parsear_ley_condominio() + parsear_codigo_civil()
 
     OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     OUT_PATH.write_text(

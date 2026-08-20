@@ -64,8 +64,8 @@ function construirInstructions(
 ): SystemModelMessage[] {
   const encabezado = `${leerSkill()}
 
-[CORPUS LEGAL INYECTADO — Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán]
-Toda cita textual de "la ley dice..." debe venir de estos artículos; cita siempre el número.
+[CORPUS LEGAL INYECTADO — Ley sobre el Régimen de Propiedad en Condominio del Estado de Yucatán y Código Civil del Estado de Yucatán (Copropiedad y Asociaciones)]
+Toda cita textual de "la ley dice..." debe venir de estos artículos; cita siempre la ley y el número de artículo.
 
 `;
 
